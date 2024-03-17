@@ -1,0 +1,50 @@
+<div class="flex flex-column gap-3">
+  <div class="flex flex-row" *ngIf="layout === 'column'">
+    <label class="{{ labelClass }}">{{ label | translate }}</label>
+    <span *ngIf="required">*</span>
+  </div>
+
+  <div class="field-checkbox" *ngIf="!isMultiple">
+    <p-skeleton
+      *ngIf="loading"
+      height="{{ skeletonHeight }}"
+      width="{{ skeletonWidth }}"
+    ></p-skeleton>
+
+    <p-checkbox
+      *ngIf="!loading"
+      [ngModel]="data"
+      (ngModelChange)="onModelChange($event)"
+      [binary]="true"
+      inputId="binary"
+      [disabled]="disabled"
+      (onChange)="change($event)"
+      [formControl]="control"
+    >
+    </p-checkbox>
+    <label for="binary" *ngIf="layout === 'row'">{{ label }}</label>
+  </div>
+
+  <div *ngIf="isMultiple">
+    <div *ngFor="let checkbox of checkboxList" class="field-checkbox">
+      <p-skeleton
+        *ngIf="loading"
+        height="{{ skeletonHeight }}"
+        width="{{ skeletonWidth }}"
+      ></p-skeleton>
+      <p-checkbox
+        *ngIf="!loading"
+        name="group2"
+        value="checkbox"
+        [value]="checkbox"
+        [ngModel]="data"
+        (ngModelChange)="onModelChange($event)"
+        [inputId]="checkbox.key"
+        [disabled]="checkbox.disabled"
+        [formControl]="control"
+      >
+      </p-checkbox>
+      <label [for]="checkbox.key">{{ checkbox.name }}</label>
+    </div>
+  </div>
+</div>

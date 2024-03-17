@@ -1,0 +1,184 @@
+<div
+  class="flex flex-{{ layout }} gap-1"
+  *ngIf="type === 'text' || type === 'email'"
+>
+  <div *ngIf="!isFlotLabel" class="flex flex-row gap-1">
+    <label class="ml-2 {{ labelClass }}">{{ label | translate }}</label>
+    <span *ngIf="isRequired" class="text-xs">*</span>
+  </div>
+  <p-skeleton *ngIf="loading" height="{{ skeletonHeight }}"></p-skeleton>
+
+  <span
+    *ngIf="!loading"
+    [ngClass]="[
+      isFlotLabel ? 'p-float-label' : '',
+      isLeftIcon ? 'p-input-icon-left' : '',
+      isRightIcon ? 'p-input-icon-right' : '',
+      addOnContent !== '' ? 'p-inputgroup' : ''
+    ]"
+  >
+    <i *ngIf="isLeftIcon || isRightIcon" class="pi {{ icon }}"></i>
+    <div class="flex flex-row p-inputgroup">
+      <input
+        id="label"
+        [ngClass]="[
+          required ? 'ng-invalid ng-dirty' : '',
+          disabled ? 'surface-300' : ''
+        ]"
+        [pKeyFilter]="regex"
+        [pValidateOnly]="true"
+        type="text"
+        pInputText
+        [class]="
+          size === 'small'
+            ? 'p-inputtext-sm'
+            : size === 'large'
+            ? 'p-inputtext-lg'
+            : ''
+        "
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [(ngModel)]="data"
+        (ngModelChange)="onModelChange($event)"
+        [required]="required"
+        [readOnly]="readOnly"
+        (blur)="blur($event)"
+        [formControl]="control"
+        (keydown.enter)="onEnter()"
+        (click)="click($event)"
+        (keyup)="keyup($event)"
+      />
+      <button
+        *ngIf="addOnSuffixButton"
+        type="button"
+        pButton
+        pRipple
+        icon="pi {{ addOnSuffixIcon }}"
+        styleClass="p-button-danger"
+        (click)="suffixButtonClick()"
+      ></button>
+    </div>
+    <small
+      *ngIf="control.touched && control.invalid && control.errors"
+      id="{{ label }}-help"
+      class="p-error block ml-2"
+    >
+      {{ errorMessage }}</small
+    >
+
+    <label *ngIf="isFlotLabel" for="label">{{ label }}</label>
+    <span *ngIf="addOnContent !== ''" class="p-inputgroup-addon">$</span>
+  </span>
+</div>
+
+<!-- textArea starts here -->
+
+<div class="flex flex-column gap-1" *ngIf="type === 'textArea'">
+  <div *ngIf="!isFlotLabel" class="flex flex-row gap-1">
+    <label class="ml-2 {{ labelClass }}">{{ label | translate }}</label>
+    <span *ngIf="isRequired" class="text-xs">*</span>
+  </div>
+  <p-skeleton *ngIf="loading" height="6rem"></p-skeleton>
+  <span *ngIf="!loading" [ngClass]="[isFlotLabel ? 'p-float-label' : '']">
+    <textarea
+      id="{{ label }}-input"
+      rows="{{ rows }}"
+      cols="{{ cols }}"
+      pInputTextarea
+      [autoResize]="isAutoResize"
+      [disabled]="disabled"
+      (onResize)="onResize($event)"
+      [ngModel]="data"
+      (ngModelChange)="onModelChange($event)"
+      [formControl]="control"
+      (keyup)="keyup($event)"
+      [ngClass]="textAreaFontClass"
+    ></textarea>
+    <label *ngIf="isFlotLabel" for="{{ label }}-input">{{ label }}</label>
+  </span>
+  <small
+    *ngIf="control.touched && control.invalid && control.errors"
+    id="{{ label }}-help"
+    class="p-error block ml-2"
+    >{{ label }} is required.</small
+  >
+</div>
+
+<!-- textArea ends here -->
+
+<!-- number starts here -->
+<div class="flex flex-column gap-1" *ngIf="type === 'number'">
+  <div *ngIf="!isFlotLabel" class="flex flex-row gap-1">
+    <label class="ml-2  {{ labelClass }}">{{ label | translate }}</label>
+    <span *ngIf="required">*</span>
+  </div>
+  <p-skeleton *ngIf="loading" height="{{ skeletonHeight }}"></p-skeleton>
+  <p-inputNumber
+    #input
+    *ngIf="!loading"
+    [ngClass]="[
+      required ? 'ng-invalid ng-dirty' : '',
+      disabled ? 'surface-300 border-round' : ''
+    ]"
+    [ngModel]="data"
+    (ngModelChange)="onModelChange($event)"
+    [mode]="mode"
+    [showButtons]="showButtons"
+    [useGrouping]="useGrouping"
+    inputId="inputId"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [currency]="currency"
+    [min]="min"
+    [max]="max"
+    [minFractionDigits]="minFractionDigits"
+    [maxFractionDigits]="maxFractionDigits"
+    [prefix]="prefix"
+    [suffix]="suffix"
+    [formControl]="control"
+    (onInput)="onInputChange($event)"
+    (keydown.enter)="onEnter()"
+    (onBlur)="blur($event)"
+    (keyup)="keyup($event)"
+  >
+  </p-inputNumber>
+  <small
+    *ngIf="control.touched && control.invalid && control.errors"
+    id="{{ label }}-help"
+    class="p-error block ml-2"
+    >{{ label }} is required.</small
+  >
+</div>
+
+<!-- number ends here -->
+
+<!-- password starts here -->
+
+<div class="flex flex-column gap-1" *ngIf="type === 'password'">
+  <div *ngIf="!isFlotLabel" class="flex flex-row gap-1">
+    <label class="ml-2 text-sm">{{ label | translate }}</label>
+    <span *ngIf="required" class="text-sm">*</span>
+  </div>
+  <p-skeleton *ngIf="loading" height="{{ skeletonHeight }}"></p-skeleton>
+
+  <p-password
+    *ngIf="!loading"
+    [ngModel]="data"
+    (ngModelChange)="onModelChange($event)"
+    [toggleMask]="toggleMask"
+    [pValidateOnly]="true"
+    [feedback]="feedback"
+    [formControl]="control"
+    (keyup)="keyup($event)"
+  >
+  </p-password>
+
+  <small
+    *ngIf="control.touched && control.invalid && control.errors"
+    id="{{ label }}-help"
+    class="p-error block ml-2"
+    >{{ label }} is required.</small
+  >
+</div>
+
+<!-- password ends here -->

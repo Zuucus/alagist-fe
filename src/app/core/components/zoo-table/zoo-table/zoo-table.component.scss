@@ -1,0 +1,164 @@
+.filter {
+  ::ng-deep {
+    .p-column-filter-menu-button,
+    .p-column-filter-clear-button {
+      display: none;
+    }
+    .p-inputtext {
+      font-size: 0.75rem;
+    }
+    .p-dropdown .p-dropdown-clear-icon {
+      right: 2.5rem;
+      font-size: 0.9rem;
+    }
+  }
+}
+:host {
+  ::ng-deep {
+    .p-datatable .p-sortable-column .p-sortable-column-icon {
+      color: #343a40;
+      margin-left: 0.5rem;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+::ng-deep {
+  .p-overlaypanel .p-overlaypanel-content {
+    padding: 0.5rem;
+  }
+
+  .p-datatable .p-datatable-loading-overlay {
+    display: none !important;
+  }
+  .p-datatable .p-datatable-header {
+    // background-color: white;
+  }
+}
+
+.event-menu {
+  :hover {
+    background: #f4f4f4;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+}
+
+.table-field {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.option-button {
+  ::ng-deep {
+    .p-button.p-button-sm {
+      padding: 0rem;
+    }
+  }
+}
+
+.table-button {
+  ::ng-deep {
+    .p-button.p-button-icon-only.p-button-rounded {
+      border-radius: 50%;
+      height: 1.4rem;
+    }
+    .p-button.p-button-icon-only {
+      width: 1.4rem;
+    }
+    .p-button.p-button-sm .p-button-icon {
+      font-size: 0.675rem;
+    }
+  }
+}
+
+.status {
+  &-orange {
+    background: #ff9b00;
+    color: white;
+    border-radius: 8px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem !important;
+  }
+  &-blue {
+    background: #2180fe;
+    color: white;
+    border-radius: 8px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem !important;
+  }
+  &-red {
+    background: #ef4444;
+    color: white;
+    border-radius: 8px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem !important;
+  }
+  &-green {
+    background: #10b981;
+    color: white;
+    border-radius: 8px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem !important;
+  }
+  &-light-blue {
+    background: #9abef8;
+    color: white;
+    border-radius: 8px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem !important;
+    display: flex;
+    justify-content: center;
+    min-width: 70%;
+  }
+}
+
+.checkbox-columns {
+  min-width: 5%;
+}
+
+@keyframes tableRowFadeIn {
+  0% {
+    background-color: #ffffff;
+  }
+
+  25% {
+    background-color: #d7d7d7;
+  }
+
+  50% {
+    background-color: #b6b6b6;
+  }
+
+  75% {
+    background-color: #d7d7d7;
+  }
+
+  100% {
+    background-color: #ffffff;
+  }
+}
+
+@keyframes tableRowFadeDanger {
+  0% {
+    background-color: red;
+    color: white; /* Assuming initial text color */
+  }
+  50% {
+    background-color: rgba(255, 0, 0, 0.5); /* Red with 50% opacity */
+    color: red; /* Text color as red */
+  }
+  100% {
+    background-color: red;
+    color: white; /* Text color as white, adjust as needed */
+  }
+}
+
+.row-appended {
+  animation: tableRowFadeIn 1s ease-in-out forwards;
+}
+
+.row-red {
+  animation: tableRowFadeDanger infinite ease-in-out forwards;
+}

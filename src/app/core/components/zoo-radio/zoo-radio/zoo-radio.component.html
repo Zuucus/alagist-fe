@@ -1,0 +1,32 @@
+<div class="flex flex-column gap-2">
+  <div class="flex flex-row gap-1">
+    <label class="{{ labelClass }}">{{ label | translate }}</label>
+    <span *ngIf="required">*</span>
+  </div>
+
+  <div class="flex flex-row">
+    <div *ngFor="let radio of radioList" class="field-checkbox">
+      <p-skeleton
+        shape="circle"
+        styleClass="mr-2"
+        *ngIf="loading"
+        height="{{ skeletonHeight }}"
+        width="{{ skeletonWidth }}"
+      ></p-skeleton>
+      <p-radioButton
+        *ngIf="!loading"
+        [inputId]="radio?.key"
+        name="radio"
+        [value]="radio"
+        [ngModel]="data"
+        (ngModelChange)="onModelChange($event)"
+        [disabled]="radio?.disabled"
+        (onClick)="onRadioClick($event)"
+      >
+      </p-radioButton>
+      <label class="mr-3 text-sm" [for]="radio?.key">{{
+        radio.name | translate
+      }}</label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<zoo-page [breadCrumbItems]="breadCrumbItems">
+  <div page-body class="p-3 flex flex-column gap-3">
+        <zoo-table
+          [smartTable]="smartTable"
+          [value]="appointmentList"
+          [loading]="loading"
+          [total]="total"
+          [isTableHeader]="false"
+          [rightToolsTemplateRef]="rightToolsTemplateRef"
+          (onPageChange)="updatePageRecords($event)"
+          (onFilterChange)="updateFilterRecords($event)"
+          (onCellClick)="onCellClick($event)"
+        >
+        </zoo-table>
+  </div>
+
+  <ng-template #rightToolsTemplateRef>
+    <zoo-button
+      *ngIf="!progressBar"
+      [isPbutton]="true"
+      [label]="'New'"
+      [size]="'sm'"
+      [icon]="'pi-plus'"
+      [iconPos]="'left'"
+      (click)="OnNewClicked()"
+    >
+    </zoo-button>
+  </ng-template>
+</zoo-page>
+
+

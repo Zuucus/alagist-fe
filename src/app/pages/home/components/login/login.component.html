@@ -1,0 +1,115 @@
+<div class="container flex justify-content-center w-full align-content-center">
+<div class="flex flex-column gap-3 justify-content-center col-3">
+<div class="flex flex-column gap-5 shadow-8 p-3 border-round" *ngIf="!isOtp">
+  <zoo-label
+    [label]="'Login'"
+    [labelClass]="'text-2xl font-bold'"
+  >
+  </zoo-label>
+
+  <zoo-input-box
+  [loading]="progressBar"
+  [label]="'Phone Number'"
+  [isFlotLabel]="false"
+  [(data)]="login.phone"
+  [required]="true"
+  [type]="'number'"
+  [formGroup]="formGroup"
+  [formControlKey]="'phone_number'"
+></zoo-input-box>
+
+<div class="flex flex-column gap-1">
+<zoo-button
+class="button"
+[label]="'Login'"
+[size]="'sm'"
+(click)="userLogin()"
+[disabled]="formGroup.invalid"
+[isRounded]="true"
+>
+</zoo-button>
+
+<zoo-button
+class="button"
+[label]="'Dont have an account? Register'"
+[size]="'sm'"
+(click)="userLogin()"
+[isText]="true"
+[isRounded]="true"
+[status]="'secondary'"
+>
+</zoo-button>
+</div>
+
+<div class="flex flex-column gap-3">
+<zoo-button
+class="button"
+[label]="'Continue with Email'"
+[size]="'sm'"
+(click)="userLogin()"
+[status]="'secondary'"
+[isRounded]="true"
+>
+</zoo-button>
+
+<zoo-button
+class="button"
+[label]="'Continue with Google'"
+[size]="'sm'"
+(click)="userLogin()"
+[status]="'secondary'"
+[isRounded]="true"
+>
+</zoo-button>
+<zoo-button
+class="button"
+[label]="'Continue with Facebook'"
+[size]="'sm'"
+(click)="userLogin()"
+[status]="'info'"
+[isRounded]="true"
+>
+</zoo-button>
+</div>
+</div>
+
+<div class="flex flex-column gap-3 p-3 shadow-8  justify-content-center border-round" *ngIf="isOtp">
+  <zoo-label
+    [label]="'Verify Your Phone Number'"
+    [labelClass]="'text-sm font-bold'">
+  </zoo-label>
+
+  <!-- <zoo-label
+    [label]="'Enter the 6-digit code sent to your phone'"
+    [labelClass]="'text-sm'">
+  </zoo-label> -->
+
+
+<zoo-input-box
+[loading]="progressBar"
+[label]="'Enter the 6-digit code sent to your phone'"
+[labelClass]="'text-xs'"
+[isFlotLabel]="false"
+[(data)]="otp"
+[required]="true"
+[type]="'number'"
+[formGroup]="formGroup"
+[formControlKey]="'otp'"
+></zoo-input-box>
+
+<zoo-button
+class="button"
+[label]="'Verify'"
+[size]="'sm'"
+(click)="userLogin()"
+[disabled]="formGroup.invalid"
+[isRounded]="true"
+>
+</zoo-button>
+
+</div>
+
+</div>
+
+
+</div>

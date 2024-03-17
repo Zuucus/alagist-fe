@@ -1,0 +1,35 @@
+<div class="flex flex-column gap-1">
+  <div class="flex flex-row gap-1">
+    <label class="ml-2 text-sm">{{ label | translate }}</label>
+    <span *ngIf="required" class="text-sm">*</span>
+  </div>
+
+  <p-skeleton *ngIf="loading" height="6rem"></p-skeleton>
+  <label
+    class="custom-file-upload flex h-10rem"
+    [ngClass]="[styleClasses]"
+    *ngIf="!croppedImage && !loading"
+  >
+    <i
+      class="pi pi-upload flex justify-content-center w-full align-content-center mt-6"
+    ></i>
+    <input type="file" accept="image/*" (change)="fileChangeEvent($event)" />
+  </label>
+
+  <zoo-image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="false"
+    [resizeToWidth]="400"
+    [roundCropper]="false"
+    format="png"
+    outputType="both"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (loadImageFailed)="loadImageFailed()"
+    style="max-height: 33vh"
+    [style.display]="cropperReady ? null : 'none'"
+  ></zoo-image-cropper>
+  <div class="flex justify-content-center p-3" *ngIf="!disabledPreview">
+    <img [src]="croppedImage" style="max-height: '5rem'" />
+  </div>
+</div>

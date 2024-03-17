@@ -1,0 +1,410 @@
+<p-table
+  #dt
+  dataKey="id"
+  [value]="value"
+  [loading]="loading"
+  [columns]="smartTable.columnsMethod"
+  [paginator]="value?.length > 0 && smartTable.paginatorMethod.isPaginator"
+  [rows]="smartTable.paginatorMethod.rowsCount"
+  [showCurrentPageReport]="smartTable.paginatorMethod.isReport"
+  currentPageReportTemplate="Showing {first} to {last} of {{ total }} entries"
+  [rowsPerPageOptions]="
+    total > smartTable.paginatorMethod.rowsCount
+      ? smartTable.paginatorMethod.rowsPerPageOptions
+      : ''
+  "
+  responsiveLayout="scroll"
+  [filterDelay]="0"
+  [globalFilterFields]="smartTable.globalFilterFields"
+  [resizableColumns]="true"
+  [reorderableColumns]="false"
+  columnResizeMode="expand"
+  [scrollable]="true"
+  scrollHeight="100%"
+  [styleClass]="styleClass"
+  [lazy]="true"
+  [totalRecords]="total"
+  [selectionMode]="selectionMode"
+  [(selection)]="selection"
+  (onPage)="onPageLoad($event)"
+  (onFilter)="filterChange($event)"
+  (onRowSelect)="onRowSelect($event)"
+  (onRowUnselect)="onRowUnselect($event)"
+  (onHeaderCheckboxToggle)="onSelectAll($event)"
+>
+
+
+  <ng-template pTemplate="caption">
+    <div class="grid">
+      <div class="col-6 flex justify-content-start">
+        <ng-container
+          *ngTemplateOutlet="
+            leftToolsTemplateRef;
+            context: { $implicit: value }
+          "
+        ></ng-container>
+      </div>
+      <div class="col-6 flex justify-content-end">
+        <ng-container
+          *ngTemplateOutlet="
+            rightToolsTemplateRef;
+            context: { $implicit: value }
+          "
+        ></ng-container>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th
+        [alignFrozen]="'left'"
+        [pFrozenColumn]="true"
+        [frozen]="true"
+        class="checkbox-columns"
+        *ngIf="selectionMode === 'multiple'"
+      >
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th
+        pReorderableColumn
+        pResizableColumn
+        [pSortableColumn]="col.field"
+        [alignFrozen]="col.isRightFrozen ? 'right' : 'left'"
+        [pFrozenColumn]="col.isFrozen"
+        [frozen]="col.isRightFrozen || col.isFrozen"
+        *ngFor="let col of columns"
+        [ngStyle]="{ 'min-width': col.width,'font-size': '14px'}"
+      >
+        {{ col.header | translate }}
+        <p-sortIcon
+          *ngIf="col.header && col.sort"
+          [field]="col.field"
+        ></p-sortIcon>
+      </th>
+    </tr>
+    <tr *ngIf="isTableFilter">
+      <th
+        [alignFrozen]="'left'"
+        [pFrozenColumn]="true"
+        [frozen]="true"
+        class="checkbox-columns"
+        *ngIf="selectionMode === 'multiple'"
+      ></th>
+      <th
+        *ngFor="let col of columns"
+        [ngStyle]="{ 'min-width': col.width }"
+        [alignFrozen]="col.isRightFrozen ? 'right' : 'left'"
+        [pFrozenColumn]="col.isFrozen"
+        [frozen]="col.isRightFrozen || col.isFrozen"
+      >
+        <p-columnFilter
+          class="filter"
+          *ngIf="col.filterType === 'text'"
+          [type]="col.filterType"
+          [field]="col.field"
+          [placeholder]="col.header | translate"
+        ></p-columnFilter>
+        <p-columnFilter
+          class="filter"
+          *ngIf="col.filterType === 'date'"
+          [field]="col.field"
+        >
+          <ng-template
+            pTemplate="filter"
+            let-filterValue
+            let-filter="filterCallback"
+          >
+            <zoo-date
+              (onSelectChange)="filter($event)"
+              [data]="filterValue"
+              [showIcon]="false"
+              [placeholder]="col.header | translate"
+              (onClear)="filter($event)"
+            >
+            </zoo-date>
+          </ng-template>
+        </p-columnFilter>
+
+        <p-columnFilter
+          class="filter"
+          *ngIf="col.filterType === 'drop'"
+          [field]="col.field"
+          matchMode="equals"
+          [showMenu]="false"
+        >
+          <ng-template
+            pTemplate="filter"
+            let-filterValue
+            let-filter="filterCallback"
+          >
+            <p-dropdown
+              appendTo="body"
+              [ngModel]="filterValue"
+              [options]="col.optionsList"
+              (onChange)="filter($event.value)"
+              placeholder="Select"
+              [showClear]="true"
+            >
+              <ng-template let-option pTemplate="item">
+                <span [class]="option.class">{{ option.label }}</span>
+              </ng-template>
+            </p-dropdown>
+          </ng-template>
+        </p-columnFilter>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-index="rowIndex"
+  >
+    <tr
+      pSelectableRow
+      *ngIf="!loading"
+      (click)="smartTable.isRowClick && rowClick(rowData)"
+      [ngClass]="[
+        smartTable.isRowClick ? 'hover:underline hover:text-primary-500' : '',
+        rowData && rowData.styleClass ? rowData.styleClass : ''
+      ]"
+    >
+      <td
+        [alignFrozen]="'left'"
+        [pFrozenColumn]="true"
+        [frozen]="true"
+        class="checkbox-columns"
+        *ngIf="selectionMode === 'multiple'"
+      >
+        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+      </td>
+      <td
+        [alignFrozen]="col.isRightFrozen ? 'right' : 'left'"
+        [pFrozenColumn]="col.isFrozen"
+        [pEditableColumn]="isCellEditable(rowData, col)"
+        [frozen]="col.isRightFrozen || col.isFrozen"
+        *ngFor="let col of columns"
+        [ngStyle]="{ 'min-width': col.width }"
+
+        (click)="
+          col.isCellClick && cellClick(col.field, rowData[col.field], rowData)
+        "
+        [ngClass]="[
+          col.isCellClick
+            ? 'hover:underline text-primary-500 cursor-pointer'
+            : '',
+          col.type === 'image' ? 'p-0' : ''
+        ]"
+      >
+        <p-image
+          *ngIf="col.type === 'document' && !col.header"
+          [src]="rowData[col.field] ? col.activeLink : col.disabledLink"
+          alt=""
+          width="30"
+        ></p-image>
+        <p-image
+          *ngIf="col.type === 'image' && col.header"
+          [src]="rowData[col.field] ? rowData[col.field] : ''"
+          alt=""
+          width="60"
+        ></p-image>
+        <label
+          class="table-field text-sm"
+          [ngClass]="{ 'cursor-pointer': col.isCellClick }"
+          [pTooltip]="getTooltip(rowData, col)"
+          tooltipPosition="top"
+          showDelay="1000"
+          *ngIf="
+            col.type !== 'text' &&
+            col.header &&
+            (!col.editable || !isCellEditable(rowData, col))
+          "
+          [ngClass]="getClassNames(rowData[col.field], col)"
+        >
+          <span *ngIf="!col.optionsList || col.optionsList.length === 0">
+            {{
+              rowData[col.field] ? rowData[col.field] : !col.editable ? "-" : ""
+            }}
+          </span>
+          <span *ngIf="col.optionsList && col.optionsList.length > 0">
+            <span
+              *ngIf="
+                rowData[col.field] &&
+                isContainsInOptionsList(rowData[col.field], col.optionsList)
+              "
+            >
+              <span *ngFor="let op of col.optionsList">
+                <span *ngIf="op.value === rowData[col.field]">
+                  {{ op.label ? op.label : rowData[col.field] }}
+                </span>
+              </span>
+            </span>
+            <span
+              *ngIf="
+                !isContainsInOptionsList(rowData[col.field], col.optionsList)
+              "
+            >
+              {{ rowData[col.field] }}
+            </span>
+          </span>
+        </label>
+        <i class="pi {{ rowData[col.field] ? col.icon : '' }} text-sm"></i>
+
+        <p-cellEditor *ngIf="isCellEditable(rowData, col)" class="text-sm">
+          <ng-template pTemplate="input">
+            <zoo-input-box
+              *ngIf="
+                col.type == '' ||
+                col.type == undefined ||
+                col.type == null ||
+                col.type == 'text'
+              "
+              [label]="''"
+              [placeholder]="'Enter'"
+              [(data)]="rowData[col.field]"
+              (onBlur)="cellEditChange(rowData)"
+              (onEnterClick)="cellEditChange(rowData)"
+            ></zoo-input-box>
+
+            <zoo-input-box
+              *ngIf="col.type === 'number'"
+              [labelClass]="'text-xs'"
+              [isFlotLabel]="false"
+              [placeholder]="'Enter'"
+              [(data)]="rowData[col.field]"
+              [type]="'number'"
+              [inputId]="col.typeOptions.inputId"
+              [mode]="col.typeOptions.mode"
+              [minFractionDigits]="col.typeOptions.minFractionDigits"
+              [maxFractionDigits]="col.typeOptions.maxFractionDigits"
+              [currency]="col.typeOptions.currency"
+              (onEnterClick)="cellEditChange(rowData)"
+              (onBlur)="cellEditChange(rowData)"
+            ></zoo-input-box>
+            <zoo-drop-down
+              *ngIf="col.type == 'drop'"
+              [label]="''"
+              [optionsList]="col.optionsList"
+              [(data)]="rowData[col.field]"
+              (onDropChange)="cellEditChange(rowData)"
+            ></zoo-drop-down>
+          </ng-template>
+          <ng-template pTemplate="output">
+            <span *ngIf="col.type === 'drop'">
+              <span *ngFor="let op of col.optionsList">
+                <span
+                  *ngIf="
+                    op.value === rowData[col.field] ||
+                    op.label === rowData[col.field]
+                  "
+                  [class]="op.class"
+                >
+                  {{ op.label }}
+                </span>
+              </span>
+            </span>
+            <span *ngIf="col.type !== 'drop'">
+              {{ rowData[col.field] }}
+            </span>
+          </ng-template>
+        </p-cellEditor>
+
+        <zoo-button
+          class="option-button"
+          *ngIf="
+            !col.header && col.type !== 'document' && col.type !== 'button'
+          "
+          [size]="'sm'"
+          [icon]="'pi-ellipsis-v'"
+          [isIconOnly]="true"
+          [isText]="true"
+          [color]="'black'"
+          (click)="optionClicked($event, rowData)"
+        >
+        </zoo-button>
+
+        <div *ngIf="col.type === 'html'">
+          <div
+            [innerHTML]="rowData[col.field]"
+            class="table-field text-sm"
+          ></div>
+        </div>
+
+        <ng-container *ngIf="col.type === 'button'">
+          <div *ngFor="let option of smartTable.eventButtonList">
+            <zoo-button
+              [disabled]="isButtonDisabled(rowData, option)"
+              class="mr-3 table-button option-button"
+              [label]="''"
+              [isIconOnly]="true"
+              [isRounded]="true"
+              [size]="'sm'"
+              [icon]="option.icon"
+              [iconPos]="'left'"
+              [status]="option.status"
+              pTooltip="{{ option.label | translate }}"
+              tooltipPosition="top"
+              showDelay="700"
+              (onClick)="option.onClick(rowData)"
+            >
+            </zoo-button>
+          </div>
+        </ng-container>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+      <td [attr.colspan]="columns.length">
+        {{ "No records found" | translate }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="loadingbody" let-columns="columns">
+    <tr
+      *ngFor="let i of getRange(smartTable.paginatorMethod.rowsPerPageOptions)"
+    >
+      <td>
+        <div class="loading-text w-full">
+          <p-skeleton styleClass="mb-2"></p-skeleton>
+          <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+          <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+          <p-skeleton height="2rem" styleClass="mb-2"></p-skeleton>
+          <p-skeleton
+            width="10rem"
+            styleClass="mb-2"
+            height="4rem"
+          ></p-skeleton>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="paginatorleft">
+    <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+  </ng-template>
+  <ng-template pTemplate="paginatorright">
+    <!-- <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button> -->
+  </ng-template>
+</p-table>
+
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+    <div
+      *ngFor="let option of smartTable.eventButtonList"
+      class="event-menu"
+      (click)="option.onClick(optionData)"
+    >
+      <div class="flex flex-row gap-1">
+        <zoo-button
+          [size]="'sm'"
+          [icon]="option.icon"
+          [isText]="true"
+          [label]="option.label"
+          [status]="option.status"
+        >
+        </zoo-button>
+      </div>
+    </div>
+  </ng-template>
+</p-overlayPanel>

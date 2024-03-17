@@ -1,0 +1,34 @@
+<div class="flex flex-{{ layout }} gap-2">
+  <div
+    [style.color]="keyColor"
+    [style.font-size]="keyFontSize"
+    [style.font-weight]="keyFontWeight"
+    [style.padding]="keyPadding"
+    [style.textAlign]="'start'"
+  >
+    {{ key | translate }}
+  </div>
+  <div
+    *ngIf="!loading"
+    [ngClass]="
+      !isWhiteSpacePre
+        ? 'text-overflow-ellipsis white-space-nowrap overflow-hidden'
+        : ''
+    "
+    [style.color]="valueColor"
+    [style.font-size]="valueFontSize"
+    [style.font-weight]="valueFontWeight"
+    [style.margin]="valueMargin"
+    [style.backgroundColor]="valueBackgroundColor"
+    [style.border-radius]="valueBorderRadius"
+    [style.padding]="valuePadding"
+    [style.white-space]="isWhiteSpacePre ? 'pre' : ''"
+    [style.textAlign]="'start'"
+    [class]="valueClass"
+    pTooltip="{{ value }}"
+    tooltipPosition="bottom"
+    showDelay="1000"
+    [innerHtml]="text"
+  ></div>
+  <p-skeleton *ngIf="loading" height="{{ skeletonHeight }}"></p-skeleton>
+</div>

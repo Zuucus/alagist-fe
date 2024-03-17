@@ -1,0 +1,31 @@
+<div class="flex flex-column gap-3">
+  <zoo-input-box
+    [label]="'Enter 6 digit code'"
+    [placeholder]="'Enter'"
+    [type]="'number'"
+    [(data)]="code"
+    [max]="6"
+    [loading]="progressBar"
+    [autofocus]="true"
+    [formGroup]="formGroup"
+    [formControlKey]="'data'"
+    (inputNumberChange)="onCodeChange($event)"
+  ></zoo-input-box>
+
+  <p-progressSpinner
+    class="flex justify-content-center"
+    *ngIf="progressBar"
+  ></p-progressSpinner>
+  <i
+    *ngIf="!progressBar && isCodeValid"
+    class="pi pi-check-circle flex justify-content-center"
+    style="font-size: 2rem; color: green"
+  ></i>
+  <div
+    class="flex flex-row justify-content-center gap-3"
+    *ngIf="!progressBar && !isCodeValid && codeStr.length === 6"
+  >
+    <i class="pi pi-times-circle" style="font-size: 2rem; color: red"></i>
+    <small class="text-danger mt-2">Invalid code</small>
+  </div>
+</div>

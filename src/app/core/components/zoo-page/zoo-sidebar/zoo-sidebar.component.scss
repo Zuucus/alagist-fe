@@ -1,0 +1,35 @@
+:host {
+  height: 100%;
+}
+
+.side-card {
+  ::ng-deep {
+    .p-card {
+      border-radius: 0;
+      width: 100%;
+    }
+  }
+}
+
+.sidebar {
+  //height: 50rem;
+  //z-index: 99999;
+}
+
+.sub-menu {
+  :hover:not(.bg-cyan-600) {
+    background: #f8f9fa;
+    cursor: pointer;
+  }
+}
+
+:host {
+  ::ng-deep {
+    .p-card {
+      border-radius: 0;
+    }
+    .p-card .p-card-body {
+      padding: 0.8rem;
+    }
+  }
+}

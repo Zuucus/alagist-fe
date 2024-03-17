@@ -1,0 +1,39 @@
+<div class="flex flex-column gap-3">
+  <zoo-input-box
+    [loading]="progressBar"
+    class="col-5"
+    [label]="'Event Title'"
+    [placeholder]="'Enter'"
+    [(data)]="event.title"
+    [required]="true"
+    [formGroup]="formGroup"
+    [formControlKey]="'title'"
+  ></zoo-input-box>
+
+  <div
+    class="grid flex flex-auto justify-content-end gap-3 p-3"
+    *ngIf="!progressBar"
+  >
+    <zoo-button
+      [label]="editMode ? 'Delete' : 'Cancel'"
+      [size]="'sm'"
+      [icon]="'pi-times'"
+      [iconPos]="'left'"
+      [status]="'danger'"
+      [isRounded]="true"
+      (click)="editMode ? OnDelete() : OnCancel()"
+    >
+    </zoo-button>
+
+    <zoo-button
+      [label]="editMode ? 'Update' : 'Add'"
+      [size]="'sm'"
+      [icon]="'pi-check'"
+      [iconPos]="'left'"
+      (click)="OnSave()"
+      [disabled]="formGroup.invalid"
+      [isRounded]="true"
+    >
+    </zoo-button>
+  </div>
+</div>

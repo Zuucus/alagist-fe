@@ -1,0 +1,55 @@
+<div class="flex flex-column">
+  <div>
+    <p-pickList
+      [target]="target"
+      [source]="source"
+      [sourceStyle]="{ height: '300px' }"
+      [targetStyle]="{ height: '300px' }"
+      [showSourceFilter]="showSourceFilter"
+      [showTargetFilter]="showTargetFilter"
+      [dragdrop]="dragdrop"
+      [sourceHeader]="sourceHeader"
+      [targetHeader]="targetHeader"
+      [showSourceControls]="showSourceControls"
+      [showTargetControls]="showTargetControls"
+      [stripedRows]="stripedRows"
+      [responsive]="responsive"
+      (onMoveToTarget)="onMoveToTarget($event)"
+      (onMoveToSource)="onMoveToSource($event)"
+      (onMoveAllToTarget)="onMoveAllToTarget($event)"
+      (onMoveAllToSource)="onMoveAllToSource($event)"
+      [filterBy]="filterBy"
+      [sourceFilterPlaceholder]="sourceFilterPlaceholder"
+    >
+      <ng-template let-product>
+        <div>here</div>
+      </ng-template>
+      <!-- <ng-template let-product pTemplate="item">
+        <div class="product-item">
+          <div class="image-container">
+            <img
+              [src]="product.image_url"
+              [alt]="product.name"
+              class="product-image"
+            />
+          </div>
+          <div class="product-list-detail">
+            <h5 class="mb-2">{{ product.style_id }}</h5>
+            <i class="pi pi-tag product-category-icon"></i>
+            <span class="product-category">{{ product.category }}</span>
+          </div>
+          <div class="product-list-action">
+            <h4 class="right-detail">{{ product.lot_id }}</h4>
+            <h6 class="right-detail">${{ product.price }}</h6>
+            <span *ngIf="product.is_in_stock" class="status-instock"
+              >IN STOCK</span
+            >
+            <span *ngIf="!product.is_in_stock" class="status-outofstock"
+              >OUT STOCK</span
+            >
+          </div>
+        </div>
+      </ng-template> -->
+    </p-pickList>
+  </div>
+</div>

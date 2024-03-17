@@ -1,0 +1,7 @@
+.button{
+  ::ng-deep{
+    .p-button {
+      width: -webkit-fill-available;
+  }
+  }
+}

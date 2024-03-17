@@ -1,0 +1,19 @@
+@import 'primeflex/primeflex.scss';
+
+.bg-card {
+  ::ng-deep{
+    .p-card .p-card-content {
+      background: #F41457;
+      color: #ffffff;
+      @include styleclass('border-round');
+
+    }
+
+    .p-button.p-button-secondary{
+      color: black;
+    background: white;
+    border: 1px solid white;
+    }
+  }
+}
+

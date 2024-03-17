@@ -1,0 +1,178 @@
+<div class="flex flex-row">
+  <div class="flex flex-column w-full">
+    <!-- <p-toolbar class="toolbar" *ngIf="isToolbar">
+      <div class="p-toolbar-group-left gap-2">
+        <zoo-button
+          [isPbutton]="true"
+          *ngIf="!isSidebar"
+          (click)="isSidebar = true"
+          [icon]="'pi-align-justify'"
+        ></zoo-button>
+        <zoo-button
+          [isPbutton]="true"
+          *ngIf="isSidebar"
+          (click)="isSidebar = false"
+          [icon]="'pi-arrow-left'"
+        ></zoo-button>
+        <div class="flex flex-column gap-1">
+          <label class="text-xl font-bold"> KESHAV</label>
+          <p-breadcrumb
+            class="breadcrumb"
+            [model]="breadCrumbItems"
+            (onItemClick)="breadCrumbClick($event)"
+          ></p-breadcrumb>
+        </div>
+      </div>
+      <div
+        class="flex flex-column toolbar-net p-3 border-round-sm"
+        *ngIf="!isOnline"
+      >
+        <label class="text-lg font-bold">
+          {{ "System not connected" | translate }}
+        </label>
+        <label class="text-sm">
+          {{
+            "Make sure your System has Active Internet Connection" | translate
+          }}
+        </label>
+      </div>
+      <div *ngIf="isOnline">
+        <img
+          *ngIf="logoUrl !== 'null'"
+          [src]="logoUrl"
+          [alt]="organizationName"
+          style="max-height: 2.5rem; max-width: 12rem"
+        />
+        <label *ngIf="logoUrl === 'null'">{{ organizationName }}</label>
+      </div>
+
+      <div class="p-toolbar-group-right gap-3">
+        <div
+          class="flex flex-row gap-1 cursor-pointer"
+          (click)="openLanguagePanel($event)"
+        >
+          <label class="text-sm cursor-pointer">{{ language }} </label>
+          <i class="pi pi-angle-down text-sm" style="margin-top: 0.2rem"></i>
+        </div>
+        <div
+          class="flex flex-row gap-1 cursor-pointer"
+          (click)="openPanel($event)"
+        >
+          <p-avatar
+            *ngIf="userName && userName[0]"
+            label="{{ userName[0] | uppercase }}"
+            shape="circle"
+          ></p-avatar>
+          <label class="cursor-pointer mt-2">{{ userName }}</label>
+        </div>
+      </div>
+    </p-toolbar> -->
+    <div
+      class="grid flex flex-row h-full w-full"
+      style="background: whitesmoke"
+    >
+      <div *ngIf="isSidebar" class="col-2 column-padding">
+        <zoo-sidebar></zoo-sidebar>
+      </div>
+      <div
+        [ngClass]="[
+          isSidebar ? 'col-10' : 'col-12',
+          progressBar ? 'cursor-wait' : ''
+        ]"
+        class="overflow-auto column-padding"
+        style="background: whitesmoke"
+      >
+        <p-progressBar
+          *ngIf="progressBar"
+          mode="indeterminate"
+          [style]="{ height: '2px' }"
+        ></p-progressBar>
+        <div class="flex flex-column gap-1 ml-5 nt-1">
+          <zoo-label
+           *ngIf="breadCrumbItems.length>0"
+          [label]="breadCrumbItems[breadCrumbItems.length-1].label"
+            [labelClass]="'text-xl font-bold'"> </zoo-label>
+          <p-breadcrumb
+            class="breadcrumb"
+            [model]="breadCrumbItems"
+            (onItemClick)="breadCrumbClick($event)"
+          ></p-breadcrumb>
+        </div>
+        <ng-content select="[page-body]"></ng-content>
+      </div>
+    </div>
+  </div>
+  <p-overlayPanel #op>
+    <ng-template pTemplate>
+      <div class="flex flex-row">
+        <zoo-button
+          [size]="'sm'"
+          [label]="'My page'"
+          [icon]="'pi-user-minus'"
+          [isText]="true"
+          [status]="'primary'"
+          (click)="toMyPage()"
+        >
+        </zoo-button>
+      </div>
+      <div class="flex flex-row">
+        <zoo-button
+          [size]="'sm'"
+          [label]="'Settings'"
+          [icon]="'pi-user'"
+          [isText]="true"
+          [status]="'primary'"
+          (click)="toUserSettings()"
+        >
+        </zoo-button>
+      </div>
+      <div class="flex flex-row">
+        <zoo-button
+          [size]="'sm'"
+          [label]="'Version'"
+          [icon]="'pi-shield'"
+          [isText]="true"
+          [status]="'primary'"
+          (click)="toVersion()"
+        >
+        </zoo-button>
+      </div>
+      <div class="flex flex-row" *ngIf="myDocumentPermission">
+        <zoo-button
+          [size]="'sm'"
+          [label]="'Document'"
+          [icon]="'pi-file'"
+          [isText]="true"
+          [status]="'primary'"
+          (click)="toMyDocuments()"
+        >
+        </zoo-button>
+      </div>
+      <div class="flex flex-row">
+        <zoo-button
+          [size]="'sm'"
+          [label]="'logout'"
+          [icon]="'pi-sign-out'"
+          [isText]="true"
+          [status]="'danger'"
+          (click)="logout()"
+        >
+        </zoo-button>
+      </div>
+    </ng-template>
+  </p-overlayPanel>
+
+  <p-overlayPanel #lang>
+    <ng-template pTemplate>
+      <div class="flex flex-column gap-4" *ngFor="let lang of languageList">
+        <div class="flex flex-row mb-3">
+          <label class="text-sm cursor-pointer" (click)="changeLang(lang)">{{
+            lang.name
+          }}</label>
+        </div>
+      </div>
+    </ng-template>
+  </p-overlayPanel>
+</div>
+
+

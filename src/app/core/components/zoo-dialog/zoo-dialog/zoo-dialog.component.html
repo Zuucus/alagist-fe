@@ -1,0 +1,10 @@
+<p-dialog [header]="headerTitle" [(visible)]="display" [modal]="modal" [style]="{width: width}" [draggable]="draggable"
+  [resizable]="resizable" (onHide)="onClose()">
+  <ng-template pTemplate="header">
+    <ng-content select="[dialog-header]"></ng-content>
+  </ng-template>
+  <ng-content select="[dialog-content]"></ng-content>
+  <ng-template pTemplate="footer">
+    <ng-content select="[dialog-footer]"></ng-content>
+  </ng-template>
+</p-dialog>

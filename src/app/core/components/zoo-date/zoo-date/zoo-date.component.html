@@ -1,0 +1,42 @@
+<div class="flex flex-column gap-1">
+  <div class="flex flex-row gap-1">
+    <label class="ml-2  {{ labelClass }}">{{ label | translate }}</label>
+    <span *ngIf="required && label" class="text-sm">*</span>
+    <i
+      *ngIf="!loading && labelTooltip"
+      class="pi {{ iconClass }} text-xs ml-1 text-blue-700 cursor-pointer"
+      [pTooltip]="labelTooltip | translate"
+      [tooltipPosition]="tooltipPosition"
+      [showDelay]="showDelay"
+    ></i>
+  </div>
+  <p-skeleton *ngIf="loading" height="{{ skeletonHeight }}"></p-skeleton>
+
+  <p-calendar
+    *ngIf="!loading"
+    appendTo="body"
+    [placeholder]="placeholder | translate"
+    [(ngModel)]="data"
+    (ngModelChange)="onModelChange($event)"
+    [showIcon]="showIcon"
+    [selectionMode]="selectionMode"
+    [inputId]="inputId"
+    [view]="view"
+    (onSelect)="selectDate($event)"
+    [showClear]="showClear"
+    (onClear)="onClearInput()"
+    [minDate]="minDate"
+    [maxDate]="maxDate"
+    [disabled]="disabled"
+    [disabledDays]="disabledDays"
+    [disabledDates]="disabledDates"
+    [dateFormat]="dateFormat"
+    [showOtherMonths]="showOtherMonths"
+    (onYearChange)="yearChange($event)"
+    (onMonthChange)="monthChange($event)"
+    [timeOnly]="timeOnly"
+    [hourFormat]="hourFormat"
+    [formControl]="control"
+    (onBlur)="blur($event)"
+  ></p-calendar>
+</div>

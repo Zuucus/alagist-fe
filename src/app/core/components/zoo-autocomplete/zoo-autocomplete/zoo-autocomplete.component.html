@@ -1,0 +1,50 @@
+<div class="flex flex-column gap-1 w-full">
+  <div class="flex flex-row gap-1">
+    <label class="ml-2 {{ labelClass }}">{{ label | translate }}</label>
+    <span *ngIf="required && label" class="text-xs">*</span>
+  </div>
+
+  <p-skeleton
+    *ngIf="loading"
+    class="w-full"
+    height="{{ skeletonHeight }}"
+  ></p-skeleton>
+  <p-autoComplete
+    *ngIf="!loading"
+    [ngClass]="[
+      required ? 'ng-invalid ng-dirty' : '',
+      disabled ? 'surface-300' : ''
+    ]"
+    appendTo="body"
+    [ngModel]="data"
+    (ngModelChange)="onModelChange($event)"
+    [suggestions]="suggestionsList"
+    (completeMethod)="search($event)"
+    [showEmptyMessage]="showEmptyMessage"
+    [field]="filterFieldName"
+    [multiple]="isMultiple"
+    [minLength]="minLength"
+    [showClear]="showClear"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [dropdownIcon]="icon"
+    [dropdown]="isIcon"
+    [delay]="delay"
+    [formControl]="control"
+    (onSelect)="selectionChange($event)"
+    (onClear)="onClearInput()"
+    (onBlur)="onFocusOut()"
+  >
+    <ng-template let-value pTemplate="item" *ngIf="customTeplateRef">
+      <ng-container
+        *ngTemplateOutlet="customTeplateRef; context: { $implicit: value }"
+      ></ng-container>
+    </ng-template>
+  </p-autoComplete>
+  <small
+    *ngIf="control.touched && control.invalid && control.errors"
+    id="{{ label }}-help"
+    class="p-error block ml-2"
+    >{{ errorMessage }}</small
+  >
+</div>

@@ -1,0 +1,22 @@
+<div class="flex flex-column gap-1">
+  <div class="flex flex-row gap-1">
+    <label class="ml-2 text-sm">{{ label | translate }}</label>
+    <span *ngIf="required" class="text-sm">*</span>
+  </div>
+  <p-fileUpload
+    #fileUpload
+    [name]="name"
+    [multiple]="isMultiple"
+    auto="true"
+    [accept]="accept"
+    [showUploadButton]="showUploadButton"
+    [showCancelButton]="showCancelButton"
+    [chooseIcon]="chooseIcon"
+    [customUpload]="customUpload"
+    (uploadHandler)="myUploader($event)"
+    (onBeforeUpload)="onBasicUpload($event)"
+    [mode]="mode"
+    [chooseLabel]="chooseLabel"
+  >
+  </p-fileUpload>
+</div>

@@ -1,0 +1,51 @@
+<p-button
+  *ngIf="isPbutton"
+  [label]="label | translate"
+  pRipple
+  [disabled]="disabled"
+  [icon]="'pi' + ' ' + icon"
+  [iconPos]="iconPos"
+  [badge]="badge"
+  [badgeClass]="'p-badge-' + badgeStatus"
+  [loading]="loading"
+  (onClick)="onButtonClick($event)"
+  [ngClass]="[
+    'p-button-' + status,
+    isLink ? 'p-button-link' : '',
+    type ? 'p-button-' + type : '',
+    isText ? 'p-button-text' : '',
+    isRounded ? 'p-button-rounded' : '',
+    'p-button-' + size,
+    isIconOnly ? 'p-button-icon-only' : ''
+  ]"
+  [pTooltip]="tooltip"
+  [tooltipPosition]="tooltipPosition"
+  [showDelay]="showDelay"
+></p-button>
+
+<button
+  *ngIf="!isPbutton"
+  pButton
+  pRipple
+  [icon]="'pi' + ' ' + icon"
+  type="type"
+  [label]="label | translate"
+  [disabled]="disabled"
+  [ngClass]="[
+    'p-button-' + status,
+    isLink ? 'p-button-link' : '',
+    'p-button-' + type,
+    isText ? 'p-button-text' : '',
+    isRounded ? 'p-button-rounded' : '',
+    'p-button-' + size,
+    isIconOnly ? 'p-button-icon-only' : ''
+  ]"
+  [ngStyle]="{
+    color: color !== '' ? color : ''
+  }"
+  (click)="onButtonClick($event)"
+  pTooltip="{{ tooltip }}"
+  tooltipPosition="top"
+  [tabIndex]="tabIndex"
+  [style]="btnStyle"
+></button>

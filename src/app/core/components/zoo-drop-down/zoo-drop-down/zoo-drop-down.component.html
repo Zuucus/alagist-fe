@@ -1,0 +1,46 @@
+<div class="flex flex-column gap-1">
+  <div class="flex flex-row gap-1">
+    <label class="ml-2 {{ labelClass }}">{{ label | translate }}</label>
+    <span *ngIf="required && label" class="text-xs">*</span>
+  </div>
+  <p-skeleton *ngIf="loading" height="{{ skeletonHeight }}"></p-skeleton>
+
+  <p-dropdown
+    *ngIf="!isMultiple && !loading"
+    appendTo="body"
+    [options]="optionsList"
+    [ngModel]="data"
+    (ngModelChange)="onModelChange($event)"
+    [placeholder]="placeholder"
+    [optionLabel]="optionLabel"
+    [showClear]="showClear"
+    [disabled]="disabled"
+    [ngClass]="[disabled ? 'surface-300' : '']"
+    [formControl]="control"
+    [filter]="filterBy !== null"
+    [filterBy]="filterBy"
+    (onChange)="changeValue($event)"
+  >
+  </p-dropdown>
+
+  <p-multiSelect
+    *ngIf="isMultiple && !loading"
+    appendTo="body"
+    [options]="optionsList"
+    [ngModel]="multiDatas"
+    (ngModelChange)="onMultiDatasModelChange($event)"
+    [optionLabel]="optionLabel"
+    [optionValue]="optionValue"
+    [disabled]="disabled"
+    [formControl]="control"
+    [display]="display"
+    filter="true"
+  >
+  </p-multiSelect>
+  <small
+    *ngIf="control.touched && control.invalid && control.errors"
+    id="{{ label }}-help"
+    class="p-error block ml-2"
+    >{{ errorMessage }}</small
+  >
+</div>

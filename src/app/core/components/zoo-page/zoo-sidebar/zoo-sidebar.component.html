@@ -1,0 +1,73 @@
+<div class="h-full min-h-screen">
+  <!-- <p-card class="h-full flex side-card w-full"> -->
+  <div class="flex flex-column sidebar w-full p-3">
+    <div *ngFor="let item of items" class="sub-menu">
+      <div
+        class="flex flex-row justify-content-between p-3"
+        (click)="changeSelection(item)"
+        *hasRole="item.roles"
+        [ngClass]="[
+          item.isSelected ? 'bg-blue-500' : '',
+          item.isSelected ? 'text-white' : '',
+          item.isSelected && item.children.length !== 0
+            ? 'border-round-top'
+            : 'border-round'
+        ]"
+      >
+        <label
+          class="text-sm"
+          [ngClass]="[
+            item.isSelected ? 'bg-blue-500' : '',
+            item.isSelected ? 'text-white' : ''
+          ]"
+          >{{ item.name | translate | uppercase }}</label
+        >
+        <div class="flex flex-row gap-3">
+          <i
+            *ngIf="item.children.length !== 0 && !item.isSelected"
+            class="pi pi-angle-down"
+            [ngClass]="[
+              item.isSelected ? 'bg-blue-500' : '',
+              item.isSelected ? 'text-white' : ''
+            ]"
+          ></i>
+          <i
+            *ngIf="item.children.length !== 0 && item.isSelected"
+            class="pi pi-angle-up"
+            [ngClass]="[
+              item.isSelected ? 'bg-blue-500' : '',
+              item.isSelected ? 'text-white' : ''
+            ]"
+          ></i>
+          <i
+            class="pi {{ item.icon }}"
+            [ngClass]="[
+              item.isSelected ? 'bg-blue-500' : '',
+              item.isSelected ? 'text-white' : ''
+            ]"
+          ></i>
+        </div>
+      </div>
+      <div *ngIf="item.isSelected">
+        <div
+          *ngFor="let child of item.children; let last = last"
+          class="surface-300 hover:bg-white"
+          [ngClass]="[last ? 'border-round-bottom' : '']"
+        >
+          <div (click)="changeChildRoute(item, child)" *hasRole="child.roles">
+            <div
+              class="flex flex-row justify-content-between p-3"
+              [ngClass]="[child.isSelected ? 'text-blue-600' : '']"
+            >
+              <label class="text-base">{{ child.name | translate }}</label>
+              <div class="flex flex-row gap-3">
+                <i class="pi {{ child.icon }}"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </p-card> -->
+</div>

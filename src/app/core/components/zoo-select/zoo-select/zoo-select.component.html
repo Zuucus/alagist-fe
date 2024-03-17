@@ -1,0 +1,18 @@
+<div class="flex flex-column gap-2">
+  <div class="flex flex-row">
+    <label class="{{ labelClass }}">{{ label | translate }}</label>
+    <span *ngIf="required">*</span>
+  </div>
+  <p-skeleton *ngIf="loading" height="{{ skeletonHeight }}"></p-skeleton>
+  <div>
+    <p-selectButton
+      *ngIf="!loading"
+      [options]="stateOptions"
+      [ngModel]="data"
+      (ngModelChange)="onModelChange($event)"
+      optionLabel="label"
+      optionValue="value"
+      (onChange)="change($event)"
+    ></p-selectButton>
+  </div>
+</div>

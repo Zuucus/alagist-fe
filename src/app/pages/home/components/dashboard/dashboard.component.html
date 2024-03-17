@@ -1,0 +1,103 @@
+<zoo-page [breadCrumbItems]="breadCrumbItems">
+  <div page-body class="p-3 flex flex-column gap-3">
+
+    <div class="flex flex-wrap gap-2">
+    <zoo-card class="col-2" [isFooterBorder]="false" [isFooter]="false"
+    [isHeader]="false">
+    <div card-content class="gap-3 flex flex-column">
+      <zoo-label class="flex justify-content-center" [label]="'20'" [labelClass]="'text-3xl font-bold'"></zoo-label>
+      <zoo-label class="flex justify-content-center"  [label]="'Bookings Today'" [labelClass]="'text-sm'"></zoo-label>
+    </div>
+    </zoo-card>
+    <zoo-card class="col-2" [isFooterBorder]="false" [isFooter]="false"
+    [isHeader]="false">
+    <div card-content class="gap-3 flex flex-column">
+      <zoo-label class="flex justify-content-center" [label]="'20'" [labelClass]="'text-3xl font-bold'"></zoo-label>
+      <zoo-label class="flex justify-content-center"  [label]="'Requests Today'" [labelClass]="'text-sm'"></zoo-label>
+    </div>
+    </zoo-card>
+    <zoo-card class="col-3" [isFooterBorder]="false" [isFooter]="false"
+    [isHeader]="false">
+    <div card-content class="gap-3 flex flex-column">
+      <zoo-label class="flex justify-content-center" [label]="'20,000'" [labelClass]="'text-3xl font-bold'"></zoo-label>
+      <zoo-label class="flex justify-content-center"  [label]="'Earnings Today'" [labelClass]="'text-sm'"></zoo-label>
+    </div>
+    </zoo-card>
+    <zoo-card class="col-4 bg-card mt-3 border-round" [isFooterBorder]="false" [isFooter]="false"
+    [isHeader]="false">
+    <div card-content class="gap-3 flex flex-row justify-content-evenly">
+      <div class="flex flex-column gap-1">
+      <zoo-label class="flex justify-content-center" [label]="'Upgrade to Premium'" [labelClass]="'text-lg font-semibold'"></zoo-label>
+      <zoo-label class="flex justify-content-center"  [label]="'More Analytics More Report '" [labelClass]="'text-xs'"></zoo-label>
+      </div>
+      <zoo-button
+      [label]="'Upgrade'"
+      [size]="'sm'"
+      (click)="upgrade()"
+      [status]="'secondary'"
+      [isRounded]="true"
+      >
+      </zoo-button>
+    </div>
+    </zoo-card>
+    </div>
+
+    <div class="flex flex-column gap-3 col-11">
+      <div class="flex flex-row justify-content-between">
+        <zoo-label [label]="'Appointments'" [labelClass]="'text-lg font-semibold'"></zoo-label>
+        <zoo-button
+        [label]="'Add Appointment'"
+        [type]="'outlined'"
+        [size]="'sm'"
+        (click)="addAppointment()"
+        [status]="'primary'"
+        [isRounded]="false"
+        >
+        </zoo-button>
+
+      </div>
+
+      <div class="flex flex-wrap">
+        <div class="col-4" *ngFor="let i of [1,2,3,4]">
+          <zoo-card [isFooterBorder]="true" class="cursor-pointer" >
+            <div card-header class="flex justify-content-between">
+              <zoo-label [label]="'Dr. John Doe'" [labelClass]="'text-xs'"></zoo-label>
+              <p-tag severity="success" value="Confirmed" [rounded]="true"></p-tag>
+            </div>
+          <div card-content class="gap-3 flex flex-column">
+            <zoo-label [label]="'Hair Color'" [labelClass]="'text-lg font-bold'"></zoo-label>
+            <zoo-label  [label]="'10:00-11:20(1hr 20m)'" [labelClass]="'text-sm'"></zoo-label>
+          </div>
+
+          <div card-footer class="flex justify-content-between">
+          <div class="flex flex-row gap-1">
+              <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" styleClass="mr-2"  shape="circle"></p-avatar>
+              <div class="flex flex-column ">
+              <zoo-label [label]="'Amy Elsner'" [labelClass]="'text-xs'"></zoo-label>
+              <zoo-label [label]="'+919965882633'" [labelClass]="'text-xs'"></zoo-label>
+              </div>
+            </div>
+              <zoo-button
+            [label]="''"
+            [size]="'sm'"
+            (click)="cancelAppointment()"
+            [status]="'secondary'"
+            [isRounded]="true"
+            [isIconOnly]="true"
+            [isText]="true"
+            [icon]="'pi pi-phone'"
+
+
+            >
+            </zoo-button>
+          </div>
+          </zoo-card>
+
+      </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</zoo-page>
