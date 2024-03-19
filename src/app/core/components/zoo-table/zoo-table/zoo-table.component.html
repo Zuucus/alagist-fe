@@ -1,5 +1,6 @@
 <p-table
   #dt
+  class="shadow-5 flex border-round-3xl p-3"
   dataKey="id"
   [value]="value"
   [loading]="loading"
@@ -180,6 +181,7 @@
         <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
       </td>
       <td
+
         [alignFrozen]="col.isRightFrozen ? 'right' : 'left'"
         [pFrozenColumn]="col.isFrozen"
         [pEditableColumn]="isCellEditable(rowData, col)"
@@ -194,7 +196,8 @@
           col.isCellClick
             ? 'hover:underline text-primary-500 cursor-pointer'
             : '',
-          col.type === 'image' ? 'p-0' : ''
+          col.type === 'image' ? 'p-0' : '',
+          col.type === 'button'? 'flex': ''
         ]"
       >
         <p-image
@@ -332,10 +335,10 @@
         </div>
 
         <ng-container *ngIf="col.type === 'button'">
-          <div *ngFor="let option of smartTable.eventButtonList">
+          <div *ngFor="let option of smartTable.eventButtonList" >
             <zoo-button
               [disabled]="isButtonDisabled(rowData, option)"
-              class="mr-3 table-button option-button"
+              class="mr-2 table-button option-button"
               [label]="''"
               [isIconOnly]="true"
               [isRounded]="true"
@@ -363,9 +366,9 @@
   </ng-template>
   <ng-template pTemplate="loadingbody" let-columns="columns">
     <tr
-      *ngFor="let i of getRange(smartTable.paginatorMethod.rowsPerPageOptions)"
+    *ngFor="let i of getRange(smartTable.paginatorMethod.rowsPerPageOptions)"
     >
-      <td>
+      <td [attr.colspan]="8">
         <div class="loading-text w-full">
           <p-skeleton styleClass="mb-2"></p-skeleton>
           <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>

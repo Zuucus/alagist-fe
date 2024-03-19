@@ -1,0 +1,121 @@
+<zoo-page [breadCrumbItems]="breadCrumbItems">
+  <div page-body class="p-3 flex flex-column gap-3 col-10">
+
+      <zoo-card [isFooterBorder]="true">
+        <div card-header>
+          <zoo-label
+            [label]="'New Appointment'"
+            [labelClass]="'font-semibold'"
+          ></zoo-label>
+        </div>
+
+        <div card-content>
+          <div class="flex flex-column gap-3">
+            <zoo-date
+              class="col-3"
+              [loading]="progressBar"
+              [label]="'Date'"
+              [required]="true"
+              [(data)]="appointment.date"
+              [minDate]="minDate"
+              [formGroup]="formGroup"
+              [formControlKey]="'date'"
+              (onSelectChange)="onSelectDateChange()"
+            >
+            </zoo-date>
+
+            <zoo-autocomplete
+              class="col-5"
+              [label]="'Customer Name'"
+              [loading]="progressBar"
+              [placeholder]="'Enter'"
+              [required]="false"
+              [(data)]="appointment.customer"
+              [suggestionsList]="usersList"
+              [filterFieldName]="'name'"
+              [delay]="300"
+              (searchKeyChange)="getUsersList($event)"
+            ></zoo-autocomplete>
+
+            <zoo-autocomplete
+              class="col-5"
+              [label]="'Service Name'"
+              [loading]="progressBar"
+              [placeholder]="'Enter'"
+              [required]="false"
+              [(data)]="appointment.service"
+              [suggestionsList]="usersList"
+              [filterFieldName]="'name'"
+              [delay]="300"
+              (searchKeyChange)="getUsersList($event)"
+            ></zoo-autocomplete>
+
+            <zoo-autocomplete
+              class="col-5"
+              [label]="'Stylist Name'"
+              [loading]="progressBar"
+              [placeholder]="'Enter'"
+              [required]="false"
+              [(data)]="appointment.stylist"
+              [suggestionsList]="usersList"
+              [filterFieldName]="'name'"
+              [delay]="300"
+              (searchKeyChange)="getUsersList($event)"
+            ></zoo-autocomplete>
+
+            <div class="grid m-0 p-0">
+              <zoo-date
+                class="col-2"
+                [loading]="progressBar"
+                [labelClass]="'text-sm'"
+                [label]="'Start Time'"
+                [placeholder]="'Time'"
+                [(data)]="appointment.start_time"
+                [timeOnly]="true"
+                [inputId]="'timeonly'"
+                (onSelectChange)="OnTimeChange($event)"
+                (onBlur)="OnTimeChange($event)"
+              >
+              </zoo-date>
+
+              <zoo-date
+                class="col-2"
+                [loading]="progressBar"
+                [labelClass]="'text-sm'"
+                [label]="'End Time'"
+                [placeholder]="'Time'"
+                [(data)]="appointment.end_time"
+                [timeOnly]="true"
+                [inputId]="'timeonly'"
+                (onSelectChange)="OnTimeChange($event)"
+                (onBlur)="OnTimeChange($event)"
+              >
+              </zoo-date>
+            </div>
+          </div>
+        </div>
+        <div card-footer class="flex justify-content-center gap-3">
+          <zoo-button
+            [label]="'Cancel'"
+            [size]="'sm'"
+            [icon]="'pi-times'"
+            [iconPos]="'left'"
+            [status]="'danger'"
+            [isRounded]="true"
+            (onClick)="OnCancel()"
+          >
+          </zoo-button>
+          <zoo-button
+            [label]="'Save'"
+            [size]="'sm'"
+            [status]="'primary'"
+            [isRounded]="true"
+            (click)="save()"
+          >
+          </zoo-button>
+        </div>
+      </zoo-card>
+
+
+  </div>
+</zoo-page>

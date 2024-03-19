@@ -1,0 +1,11 @@
+<zoo-page [breadCrumbItems]="breadCrumbItems">
+  <div page-body class="p-3 flex flex-column gap-3">
+    <full-calendar *ngIf="calendarVisible()" [options]="calendarOptions()">
+      <ng-template #eventContent let-arg>
+        <b>{{ arg.timeText }}</b>
+        <i>{{ arg.event.title }}</i>
+      </ng-template>
+    </full-calendar>
+
+  </div>
+</zoo-page>

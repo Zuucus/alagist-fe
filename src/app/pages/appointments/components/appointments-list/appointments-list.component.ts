@@ -67,7 +67,7 @@ export class AppointmentsListComponent {
         },
         {
           field: 'name',
-          header: 'Account Name',
+          header: 'Name',
           width: '10%',
           filterType: 'text',
           isFrozen: true,
@@ -75,69 +75,52 @@ export class AppointmentsListComponent {
         },
         {
           field: 'from_time',
-          header: 'From Date',
-          width: '13%',
+          header: 'From Time',
+          width: '10%',
+          filterType: 'text',
+        },
+        {
+          field: 'to_time',
+          header: 'To Time',
+          width: '10%',
+          filterType: 'text',
+        },
+        {
+          field: 'date',
+          header: ' Date',
+          width: '10%',
           filterType: 'date',
         },
         {
-          field: 'to_date',
-          header: 'To Date',
-          width: '13%',
-          filterType: 'date',
-        },
-        {
-          field: 'scheduled_date',
-          header: 'Scheduled Date',
-          width: '13%',
-          filterType: 'date',
-        },
-        {
-          field: 'payment_date',
-          header: 'Payment Date',
-          width: '13%',
-          filterType: 'date',
+          field: 'payment_status',
+          header: 'Payment Status',
+          width: '10%',
+          filterType: 'drop',
+          optionsList: [
+            { label: 'Unpaid', value: 'unpaid', class: 'status-red' },
+            { label: 'Paid', value: 'confirmed', class: 'status-green' },
+          ],
         },
         {
           field: 'status',
           header: 'Status',
-          width: '12%',
+          width: '10%',
           filterType: 'drop',
           optionsList: [
-            { label: 'Pending', value: 'pending', class: 'status-orange' },
-            { label: 'Queued', value: 'queued', class: 'status-red' },
+            { label: 'Confirmed', value: 'confirmed', class: 'status-green' },
             {
-              label: 'Generating',
-              value: 'generating',
+              label: 'Pencilin',
+              value: 'pencilin',
               class: 'status-light-blue',
             },
-            { label: 'Generated', value: 'generated', class: 'status-green' },
-            { label: 'Sent', value: 'sent', class: 'status-blue' },
+            { label: 'Waiting', value: 'waiting', class: 'status-blue' },
+            { label: 'Pending', value: 'pending', class: 'status-orange' },
+            { label: 'Cancelled', value: 'cancelled', class: 'status-red' },
           ],
-        },
-        {
-          field: 'statement_url',
-          header: 'Statement',
-          width: '10%',
-          filterType: '',
-          type: 'icon',
-          icon: 'pi-file-pdf',
-          isCellClick: true,
         },
         {
           field: 'author',
           header: 'Author',
-          width: '10%',
-          filterType: '',
-        },
-        {
-          field: 'created_at',
-          header: 'Created At',
-          width: '10%',
-          filterType: '',
-        },
-        {
-          field: 'updated_at',
-          header: 'Updated At',
           width: '10%',
           filterType: '',
         },
@@ -235,7 +218,20 @@ export class AppointmentsListComponent {
   }
 
   geAppointmentList() {
-    //this.loading = true;
+    this.loading = true;
+    this.appointmentsService
+      .getAppointmentsList(this.filterValues)
+      .subscribe({
+        next: (res: any) => {
+          this.loading = false;
+          this.appointmentList = res.data;
+          this.total = res.total;
+        },
+        error: (error:any) => {
+          this.loading = false;
+          this.zooMessageService.sendError(error.error[Object.keys(error.error)[0]]);
+        },
+      });
 
   }
 

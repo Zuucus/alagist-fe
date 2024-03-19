@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppointmentsListComponent } from './components/appointments-list/appointments-list.component';
-import { AppointmentsNewComponent } from './appointments-new/appointments-new.component';
+import { AppointmentsNewComponent } from './components/appointments-new/appointments-new.component';
+import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path:'new',
     component: AppointmentsNewComponent
+  },
+  {
+    path: 'calendar',
+    component: AppointmentCalendarComponent
   }
 ];
 

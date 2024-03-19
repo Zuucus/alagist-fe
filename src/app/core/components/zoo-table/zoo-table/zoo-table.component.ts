@@ -28,7 +28,7 @@ export class ZooTableComponent implements OnInit {
   @Input() total = 0;
   @Input() selectionMode = 'single';
   @Input() selection = [];
-  @Input() styleClass = 'p-datatable-striped p-datatable-sm';
+  @Input() styleClass = 'p-datatable-striped p-datatable-sm w-full';
   @Input() isTableHeader = true;
   @Input() isTableFilter = true;
 

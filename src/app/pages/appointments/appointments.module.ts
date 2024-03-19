@@ -10,18 +10,20 @@ import { ZooCardModule } from 'src/app/core/components/zoo-card/zoo-card.module'
 import { ZooLabelModule } from 'src/app/core/components/zoo-label/zoo-label.module';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TableModule } from 'primeng/table';
-import { AppointmentsNewComponent } from './appointments-new/appointments-new.component';
-import { AppointmentsViewComponent } from './appointments-view/appointments-view.component';
+import { AppointmentsNewComponent } from './components/appointments-new/appointments-new.component';
+import { AppointmentsViewComponent } from './components/appointments-view/appointments-view.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ZooDateModule } from 'src/app/core/components/zoo-date/zoo-date.module';
 import { ZooAutocompleteModule } from 'src/app/core/components/zoo-autocomplete/zoo-autocomplete.module';
+import { AppointmentCalendarComponent } from './components/appointment-calendar/appointment-calendar.component';
 
 
 @NgModule({
   declarations: [
     AppointmentsListComponent,
     AppointmentsNewComponent,
-    AppointmentsViewComponent
+    AppointmentsViewComponent,
+    AppointmentCalendarComponent
   ],
   imports: [
     CommonModule,
