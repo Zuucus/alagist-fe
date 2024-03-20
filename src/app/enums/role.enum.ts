@@ -8,6 +8,10 @@ export enum Role {
   CUSTOMER = 'CUST',
   VENDOR = 'VEND',
 
+
+  //Appointment
+  APPOINTMENT= 'APP',
+
   // KDocs
   KD_EXPORTS = 'EXP',
   IMPORTS = 'IMP',

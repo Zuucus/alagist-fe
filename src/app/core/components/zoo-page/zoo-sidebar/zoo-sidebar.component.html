@@ -1,11 +1,9 @@
 <div class="h-full min-h-screen">
-  <!-- <p-card class="h-full flex side-card w-full"> -->
   <div class="flex flex-column sidebar w-full p-3">
     <div *ngFor="let item of items" class="sub-menu">
       <div
         class="flex flex-row justify-content-between p-3"
         (click)="changeSelection(item)"
-        *hasRole="item.roles"
         [ngClass]="[
           item.isSelected ? 'bg-blue-500' : '',
           item.isSelected ? 'text-white' : '',
@@ -54,7 +52,7 @@
           class="surface-300 hover:bg-white"
           [ngClass]="[last ? 'border-round-bottom' : '']"
         >
-          <div (click)="changeChildRoute(item, child)" *hasRole="child.roles">
+          <div (click)="changeChildRoute(item, child)">
             <div
               class="flex flex-row justify-content-between p-3"
               [ngClass]="[child.isSelected ? 'text-blue-600' : '']"
@@ -69,5 +67,4 @@
       </div>
     </div>
   </div>
-  <!-- </p-card> -->
 </div>

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DiscoverComponent } from './components/discover/discover.component';
+import { DiscoverPlacesComponent } from './components/discover-places/discover-places.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     // data: { roles: [Role.DOCUMENTTEMPLATE] },
   },
+  {
+    path: 'discover',
+    component: DiscoverComponent,
+  },
+  {
+    path: 'discover-places',
+    component: DiscoverPlacesComponent,
+  }
 
 ];
 

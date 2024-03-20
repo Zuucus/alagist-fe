@@ -14,13 +14,21 @@ import { ZooPageModule } from 'src/app/core/components/zoo-page/zoo-page.module'
 import { TagModule } from 'primeng/tag';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { DiscoverComponent } from './components/discover/discover.component';
+import { ZooAutocompleteModule } from 'src/app/core/components/zoo-autocomplete/zoo-autocomplete.module';
+import { HomeFooterComponent } from './components/home-footer/home-footer.component';
+import { DiscoverPlacesComponent } from './components/discover-places/discover-places.component';
+import { ZooDateModule } from 'src/app/core/components/zoo-date/zoo-date.module';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    DiscoverComponent,
+    HomeFooterComponent,
+    DiscoverPlacesComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +40,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     ZooInputBoxModule,
     ZooButtonModule,
     ZooPageModule,
+    ZooAutocompleteModule,
+    ZooDateModule,
     TagModule,
     AvatarModule,
     AvatarGroupModule

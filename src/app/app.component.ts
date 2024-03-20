@@ -196,6 +196,6 @@ export class AppComponent {
   }
 
   navigateTo(route: string) {
-    this.router.navigate(['/login']);
+    this.router.navigate([route]);
   }
 }

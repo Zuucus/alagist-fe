@@ -1,0 +1,87 @@
+<div class="flex flex-column gap-3">
+    <div class="flex flex-column gap-3 align-items-center p-3 bg-black-alpha-90 text-0 ">
+        <div class="flex flex-column gap-1 text-center p-6">
+            <zoo-label [label]="'Discover and book beauty & wellness'" [labelClass]="'text-4xl font-bold'">
+            </zoo-label>
+            <zoo-label [label]="'professionals near you'" [labelClass]="'text-4xl font-bold'">
+            </zoo-label>
+
+            <div class="flex flex-column gap-1 text-center">
+                <zoo-autocomplete class="auto" [label]="''" [placeholder]="'Search services or business'"
+                    [required]="false" [(data)]="discover" [suggestionsList]="discoverList" [filterFieldName]="''"
+                    [delay]="300" [isIcon]="false" (searchKeyChange)="getDiscoverList($event)"></zoo-autocomplete>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap gap-5 justify-content-center mt-5">
+        <div *ngFor="let service of serviceList" class="shadow-3 border-round">
+            <div class="flex flex-row gap-3 p-3">
+                <zoo-label class="mt-3" [label]="service.name" [labelClass]="'text-lg font-semibold'"></zoo-label>
+                <p-image [src]="service.image" alt="" width="50" height="50"></p-image>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="flex flex-column gap-3 mb-3">
+        <div class="flex flex-row justify-content-between col-offset-1 col-10 ">
+            <zoo-label [label]="'Top Rated Salons'" [labelClass]="'text-lg font-bold'"></zoo-label>
+            <zoo-label [label]="'Find More'" [labelClass]="'text-lg font-bold underline'"></zoo-label>
+        </div>
+        <div class="flex flex-wrap justify-content-center gap-3">
+            <div class="flex col-2  gap-3 shadow-3 border-round" *ngFor="let i of [1,2,3,4,5]">
+                <div class="gap-2 flex flex-column">
+                    <p-image [src]="'/assets/images/dashboard/salon.png'" alt="" height="150"
+                        width="100%"></p-image>
+                    <zoo-label [label]="'Anlon'" [labelClass]="'text-lg font-bold'"></zoo-label>
+                    <zoo-label [label]="'Chennai'" [labelClass]="'text-xs'"></zoo-label>
+                    <div class="flex flex-row justify-content-between mt-2 mb-2">
+                        <zoo-label class="border-1 border-round p-1" [label]="'Hair Salon'"
+                            [labelClass]="'text-sm'"></zoo-label>
+                        <zoo-label [label]="'4.8(1879)'" [labelClass]="'text-sm text-teal-900'"></zoo-label>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class=" flex flex-column gap-3">
+        <zoo-label class="col-offset-1 col-10" [label]="'Reviews'" [labelClass]="'text-lg font-bold'"></zoo-label>
+        <div class="flex flex-wrap gap-3 justify-content-center">
+            <div class="flex col-3  gap-3 shadow-3 border-round p-3" *ngFor="let i of [1,2,3]">
+                <div class="gap-2 flex flex-column">
+                    <zoo-label [label]="'The Best Booking System'" [labelClass]="'text-lg font-bold'"></zoo-label>
+                    <zoo-label [label]="text" [labelClass]="'text-xs'" [labelWrap]="''"></zoo-label>
+                    <div class="flex flex-row  mt-2 mb-2">
+                        <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                            styleClass="mr-2" shape="circle"></p-avatar>
+                        <div class="flex flex-column ">
+                            <zoo-label [label]="'Zain Donin'" [labelClass]="'text-sm'"></zoo-label>
+                            <div class="flex flex-row gap-1">
+                                <zoo-label [label]="'4.8(1879)'" [labelClass]="'text-sm text-teal-900'"></zoo-label>
+                                <span> |</span>
+                                <zoo-label [label]="'2 days ago'" [labelClass]="'text-sm text-teal-900'"></zoo-label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <app-home-footer></app-home-footer>
+
+
+</div>
+
+

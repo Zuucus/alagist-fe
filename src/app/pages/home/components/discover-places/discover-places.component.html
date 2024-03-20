@@ -1,0 +1,43 @@
+<div class="flex flex-column gap-3 ">
+
+  <div class="flex flex-column gap-3 p-6 bg-black-alpha-90 text-0">
+    <zoo-label  class="flex justify-content-center" [label]="'Discover Places'" [labelClass]="'text-2xl font-semibold'"></zoo-label>
+    <div class="flex flex-row gap-3 justify-content-center">
+      <zoo-autocomplete class="col-3 auto" [label]="''" [placeholder]="'Search services'"
+      [required]="false" [(data)]="discover" [suggestionsList]="discoverPlacesList" [filterFieldName]="''"
+      [delay]="300" [isIcon]="false" (searchKeyChange)="getDiscoverList($event)"></zoo-autocomplete>
+      <zoo-autocomplete class="col-2 auto" [label]="''" [placeholder]="'Location'"
+      [required]="false" [(data)]="location" [suggestionsList]="discoverPlacesList" [filterFieldName]="''"
+      [delay]="300" [isIcon]="false" (searchKeyChange)="getDiscoverList($event)"></zoo-autocomplete>
+      <zoo-date
+      class="col-2 auto"
+      [placeholder]="'Date'"
+      [label]="''"
+      [required]="true"
+      [(data)]="date"
+      [minDate]="minDate"
+      [showIcon]="false"
+      (onSelectChange)="onSelectDateChange()"
+    >
+    </zoo-date>
+    <zoo-date
+    class="col-2 auto"
+    [labelClass]="'text-sm'"
+    [label]="''"
+    [placeholder]="'Time'"
+    [(data)]="time"
+    [timeOnly]="true"
+    [inputId]="'timeonly'"
+    [showIcon]="false"
+    (onSelectChange)="OnTimeChange($event)"
+    (onBlur)="OnTimeChange($event)"
+  >
+  </zoo-date>
+
+
+    </div>
+  </div>
+
+
+
+</div>
