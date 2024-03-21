@@ -1,6 +1,6 @@
 <div class="flex flex-column gap-3 ">
 
-  <div class="flex flex-column gap-3 p-6 bg-black-alpha-90 text-0">
+  <div class="flex flex-column gap-3 p-6 bg-black-alpha-90 text-0 text">
     <zoo-label  class="flex justify-content-center" [label]="'Discover Places'" [labelClass]="'text-2xl font-semibold'"></zoo-label>
     <div class="flex flex-row gap-3 justify-content-center">
       <zoo-autocomplete class="col-3 auto" [label]="''" [placeholder]="'Search services'"
@@ -38,6 +38,43 @@
     </div>
   </div>
 
+  <div class="flex flex-column gap-3 p-5 ">
+    <zoo-label class="col-offset-1 col-10" [label]="'12 venues Nearby'" [labelClass]="'text-lg font-bold'"></zoo-label>
+  <div class="flex flex-wrap justify-content-center gap-3">
+    <div class="flex col-2  gap-3 shadow-3 border-round" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]">
+        <div class="gap-2 flex flex-column" (click)="viewSalon()">
+            <p-image [src]="'/assets/images/dashboard/salon.png'" alt="" height="150"
+                width="100%"></p-image>
+            <zoo-label [label]="'Anlon'" [labelClass]="'text-lg font-bold'"></zoo-label>
+            <zoo-label [label]="'Chennai'" [labelClass]="'text-xs'"></zoo-label>
+            <div class="flex flex-row justify-content-between mt-2 mb-2">
+                <zoo-label class="border-1 border-round p-1" [label]="'Hair Salon'"
+                    [labelClass]="'text-sm'"></zoo-label>
+                <zoo-label [label]="'4.8(1879)'" [labelClass]="'text-sm text-teal-900'"></zoo-label>
 
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="flex flex-wrap gap-5 justify-content-center  p-8">
+  <div *ngFor="let service of serviceList" class="shadow-3 border-round">
+      <div class="flex flex-row gap-3 p-3">
+          <zoo-label class="mt-3" [label]="service.name" [labelClass]="'text-lg font-semibold'"></zoo-label>
+          <p-image [src]="service.image" alt="" width="50" height="50"></p-image>
+
+
+      </div>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<app-home-footer></app-home-footer>
 
 </div>

@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DiscoverComponent } from './components/discover/discover.component';
 import { DiscoverPlacesComponent } from './components/discover-places/discover-places.component';
+import { SalonDetailViewComponent } from './components/salon-detail-view/salon-detail-view.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'discover-places',
     component: DiscoverPlacesComponent,
+  },
+  {
+    path: 'salon-detail-view',
+    component: SalonDetailViewComponent,
+
   }
 
 ];

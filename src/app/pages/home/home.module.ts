@@ -19,6 +19,7 @@ import { ZooAutocompleteModule } from 'src/app/core/components/zoo-autocomplete/
 import { HomeFooterComponent } from './components/home-footer/home-footer.component';
 import { DiscoverPlacesComponent } from './components/discover-places/discover-places.component';
 import { ZooDateModule } from 'src/app/core/components/zoo-date/zoo-date.module';
+import { SalonDetailViewComponent } from './components/salon-detail-view/salon-detail-view.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ZooDateModule } from 'src/app/core/components/zoo-date/zoo-date.module'
     DashboardComponent,
     DiscoverComponent,
     HomeFooterComponent,
-    DiscoverPlacesComponent
+    DiscoverPlacesComponent,
+    SalonDetailViewComponent
   ],
   imports: [
     CommonModule,
