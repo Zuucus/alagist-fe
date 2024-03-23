@@ -20,6 +20,10 @@ import { HomeFooterComponent } from './components/home-footer/home-footer.compon
 import { DiscoverPlacesComponent } from './components/discover-places/discover-places.component';
 import { ZooDateModule } from 'src/app/core/components/zoo-date/zoo-date.module';
 import { SalonDetailViewComponent } from './components/salon-detail-view/salon-detail-view.component';
+import { ChipModule } from 'primeng/chip';
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from '@angular/forms';
+import { DividerModule } from 'primeng/divider';
 
 
 @NgModule({
@@ -46,7 +50,11 @@ import { SalonDetailViewComponent } from './components/salon-detail-view/salon-d
     ZooDateModule,
     TagModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    ChipModule,
+    RatingModule,
+    FormsModule,
+    DividerModule
 
   ]
 })

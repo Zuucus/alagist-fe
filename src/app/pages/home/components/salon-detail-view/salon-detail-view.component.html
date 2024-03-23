@@ -1,7 +1,287 @@
-<div class="flex flex-row">
-  <div class="flex flex-column col-6">
+<zoo-page [isSidebar]="false">
+  <div page-body class="p-8 flex flex-column gap-3">
+    <div class="flex flex-row">
+      <div class="flex flex-column gap-3 col-6 col-offset-1">
+        <div class="flex flex-row gap-3 p-3">
+          <p-image
+            [src]="salon?.image"
+            alt=""
+            height="150"
+            width="100%"
+          ></p-image>
+          <div class="flex flex-column">
+            <div class="flex flex-row">
+              <zoo-label
+                class="p-1"
+                [label]="salon?.rating"
+                [labelClass]="'text-sm'"
+              ></zoo-label>
+              <zoo-label
+                class="p-1"
+                [label]="'(' + salon?.ratingCount + ')'"
+                [labelClass]="'text-sm'"
+              ></zoo-label>
+            </div>
+            <zoo-label
+              class="mt-3"
+              [label]="salon?.name"
+              [labelClass]="'text-lg font-bold'"
+            ></zoo-label>
+            <zoo-label
+              [label]="salon?.address"
+              [labelClass]="'text-xs'"
+            ></zoo-label>
+            <div class="flex flex-row gap-1">
+              <zoo-label
+                [label]="'Opening Hours'"
+                [labelClass]="'text-xs'"
+              ></zoo-label>
+              <zoo-label
+                [label]="salon?.hours"
+                [labelClass]="'text-xs'"
+              ></zoo-label>
+            </div>
+          </div>
+        </div>
 
+        <div class="flex flex-column gap-1 p-3">
+          <zoo-label
+            [label]="'Services(25)'"
+            [labelClass]="'text-lg font-bold'"
+          ></zoo-label>
 
+          <div class="card flex gap-2 flex-wrap p-3">
+            <p-chip label="All Services"> </p-chip>
+            <p-chip label="Men"></p-chip>
+            <p-chip label="Women"></p-chip>
+            <p-chip label="Others"></p-chip>
+          </div>
+
+          <div class="flex flex-column gap-3">
+            <zoo-label
+              [label]="'Womens'"
+              [labelClass]="'text-lg font-bold'"
+            ></zoo-label>
+            <div class="flex flex-column gap-3" *ngFor="let i of [1, 2]">
+              <div
+                class="flex flex-row justify-content-between shadow-3 border-round mb-3"
+              >
+                <div class="flex flex-row gap-3 p-3">
+                  <p-image
+                    [src]="salon?.image"
+                    alt=""
+                    height="70"
+                    width="70"
+                  ></p-image>
+                  <div class="flex flex-column">
+                    <zoo-label
+                      [label]="'Womens Cut (Normal)'"
+                      [labelClass]="'text-lg font-bold'"
+                    ></zoo-label>
+                    <div class="flex flex-row gap-1">
+                      <zoo-label
+                        [label]="'Estimated time'"
+                        [labelClass]="'text-xs'"
+                      ></zoo-label>
+                      <zoo-label
+                        [label]="'25m'"
+                        [labelClass]="'text-xs'"
+                      ></zoo-label>
+                    </div>
+                    <zoo-label
+                      class="mt-2"
+                      [label]="'1200'"
+                      [labelClass]="'text-lg font-bold'"
+                    ></zoo-label>
+                  </div>
+                </div>
+                <zoo-button
+                  class="p-3 mt-4"
+                  [size]="'sm'"
+                  [status]="'primary'"
+                  [type]="'outlined'"
+                  [isIconOnly]="true"
+                  [status]="'secondary'"
+                  [icon]="'pi-plus'"
+                ></zoo-button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-column gap-3">
+            <zoo-label
+              [label]="'Mens'"
+              [labelClass]="'text-lg font-bold'"
+            ></zoo-label>
+            <div class="flex flex-column gap-3" *ngFor="let i of [1, 2]">
+              <div
+                class="flex flex-row justify-content-between shadow-3 border-round mb-3"
+              >
+                <div class="flex flex-row gap-3 p-3">
+                  <p-image
+                    [src]="salon?.image"
+                    alt=""
+                    height="70"
+                    width="70"
+                  ></p-image>
+                  <div class="flex flex-column">
+                    <zoo-label
+                      [label]="'Mens Cut (Normal)'"
+                      [labelClass]="'text-lg font-bold'"
+                    ></zoo-label>
+                    <div class="flex flex-row gap-1">
+                      <zoo-label
+                        [label]="'Estimated time'"
+                        [labelClass]="'text-xs'"
+                      ></zoo-label>
+                      <zoo-label
+                        [label]="'25m'"
+                        [labelClass]="'text-xs'"
+                      ></zoo-label>
+                    </div>
+                    <zoo-label
+                      class="mt-2"
+                      [label]="'1200'"
+                      [labelClass]="'text-lg font-bold'"
+                    ></zoo-label>
+                  </div>
+                </div>
+                <zoo-button
+                  class="p-3 mt-4"
+                  [size]="'sm'"
+                  [status]="'primary'"
+                  [type]="'outlined'"
+                  [isIconOnly]="true"
+                  [status]="'secondary'"
+                  [icon]="'pi-plus'"
+                ></zoo-button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-column gap-3">
+            <zoo-label
+              [label]="'Services'"
+              [labelClass]="'text-lg font-bold'"
+            ></zoo-label>
+            <div class="flex flex-column gap-3" *ngFor="let i of [1, 2]">
+              <div
+                class="flex flex-row justify-content-between shadow-3 border-round mb-3"
+              >
+                <div class="flex flex-row gap-3 p-3">
+                  <p-image
+                    [src]="salon?.image"
+                    alt=""
+                    height="70"
+                    width="70"
+                  ></p-image>
+                  <div class="flex flex-column">
+                    <zoo-label
+                      [label]="'Hair color'"
+                      [labelClass]="'text-lg font-bold'"
+                    ></zoo-label>
+                    <div class="flex flex-row gap-1">
+                      <zoo-label
+                        [label]="'Estimated time'"
+                        [labelClass]="'text-xs'"
+                      ></zoo-label>
+                      <zoo-label
+                        [label]="'25m'"
+                        [labelClass]="'text-xs'"
+                      ></zoo-label>
+                    </div>
+                    <zoo-label
+                      class="mt-2"
+                      [label]="'1200'"
+                      [labelClass]="'text-lg font-bold'"
+                    ></zoo-label>
+                  </div>
+                </div>
+                <zoo-button
+                  class="p-3 mt-4"
+                  [size]="'sm'"
+                  [status]="'primary'"
+                  [type]="'outlined'"
+                  [isIconOnly]="true"
+                  [status]="'secondary'"
+                  [icon]="'pi-plus'"
+                ></zoo-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-column gap-3 col-3">
+        <div class="flex flex-column gap-1">
+          <p-image
+            [src]="'/assets/images/saloon/saloon1.png'"
+            alt=""
+            height="300"
+            width="100%"
+          ></p-image>
+          <div class="flex flex-wrap gap-1 col-11">
+            <p-image
+            *ngFor="let service of serviceList"
+              [src]="service.image"
+              alt=""
+              height="80"
+              width="80"
+            ></p-image>
+          </div>
+        </div>
+        <div class="flex flex-column gap-1">
+          <zoo-label
+            [label]="'Reviews'"
+            [labelClass]="'text-lg font-bold'"
+          ></zoo-label>
+          <div class="flex flex-row gap-1">
+            <zoo-label
+              [label]="'4.8'"
+              [labelClass]="'font-bold underline'"
+            ></zoo-label>
+            <zoo-label [label]="'(1879)'" [labelClass]="'text-xs'"></zoo-label>
+            <p-rating [(ngModel)]="value" [cancel]="false"></p-rating>
+          </div>
+        </div>
+        <div class="shadow-3 border-round">
+          <div class="flex flex-column gap-3" *ngFor="let i of [1, 2, 3]">
+            <div
+              class="flex flex-column justify-content-between border-round p-3 gap-3"
+            >
+              <div class="flex flex-row gap-3">
+                <p-avatar
+                  image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                  styleClass="mr-2"
+                  shape="circle"
+                ></p-avatar>
+                <div class="flex flex-column">
+                  <zoo-label
+                    [label]="'Zain Donin'"
+                    [labelClass]="'text-lg font-bold'"
+                  ></zoo-label>
+                  <div class="flex flex-row gap-1">
+                    <zoo-label
+                      [label]="'4.8(1879)'"
+                      [labelClass]="'text-sm text-teal-900'"
+                    ></zoo-label>
+                    <span> |</span>
+                    <zoo-label
+                      [label]="'2 days ago'"
+                      [labelClass]="'text-sm text-teal-900'"
+                    ></zoo-label>
+                  </div>
+                </div>
+              </div>
+              <zoo-label
+                [label]="text"
+                [labelClass]="'text-xs'"
+                [labelWrap]="''"
+              ></zoo-label>
+            </div>
+            <p-divider></p-divider>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-</div>
+</zoo-page>
