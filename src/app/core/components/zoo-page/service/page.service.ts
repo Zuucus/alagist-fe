@@ -54,6 +54,50 @@ export class PageService {
         }
       ],
     },
+    {
+      name: 'Services',
+      icon: 'pi-cog',
+      route: '/services',
+      isSelected: false,
+      isHovered: false,
+      enum: Role.SERVICES,
+      roles: [Role.SERVICES],
+      hidden: false,
+      children:[]
+    },
+    {
+      name: 'Employee',
+      icon: 'pi-user',
+      route: '/employee',
+      isSelected: false,
+      isHovered: false,
+      enum: Role.EMPLOYEE,
+      roles: [Role.EMPLOYEE],
+      hidden: false,
+      children: [],
+    },
+    {
+      name: 'Portfolio',
+      icon: 'pi-briefcase',
+      route: '/portfolio',
+      isSelected: false,
+      isHovered: false,
+      enum: Role.PORTFOLIO,
+      roles: [Role.PORTFOLIO],
+      hidden: false,
+      children: [],
+    },
+    {
+      name: 'Customers',
+      icon: 'pi-users',
+      route: '/customers',
+      isSelected: false,
+      isHovered: false,
+      enum: Role.CUSTOMER,
+      roles: [Role.CUSTOMER],
+      hidden: false,
+      children: [],
+    },
   ];
 
   languageList = [

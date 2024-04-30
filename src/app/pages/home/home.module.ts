@@ -24,6 +24,12 @@ import { ChipModule } from 'primeng/chip';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
+import { RegisterComponent } from './components/register/register.component';
+import { StepsModule } from 'primeng/steps';
+import { ZooCheckboxModule } from 'src/app/core/components/zoo-checkbox/zoo-checkbox.module';
+import { ZooDropDownModule } from 'src/app/core/components/zoo-drop-down/zoo-drop-down.module';
+import { AddServicesComponent } from './components/register/add-services/add-services.component';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -34,7 +40,9 @@ import { DividerModule } from 'primeng/divider';
     DiscoverComponent,
     HomeFooterComponent,
     DiscoverPlacesComponent,
-    SalonDetailViewComponent
+    SalonDetailViewComponent,
+    RegisterComponent,
+    AddServicesComponent
   ],
   imports: [
     CommonModule,
@@ -54,8 +62,11 @@ import { DividerModule } from 'primeng/divider';
     ChipModule,
     RatingModule,
     FormsModule,
-    DividerModule
-
-  ]
+    DividerModule,
+    StepsModule,
+    ZooCheckboxModule,
+    ZooDropDownModule
+  ],
+  providers: [MessageService]
 })
 export class HomeModule { }

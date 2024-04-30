@@ -1,0 +1,129 @@
+<zoo-page [breadCrumbItems]="breadCrumbItems">
+  <div page-body class="p-3 flex flex-column gap-3 col-10">
+
+      <zoo-card [isFooterBorder]="true">
+        <div card-header>
+          <zoo-label
+            [label]="'New Portfolio'"
+            [labelClass]="'font-semibold'"
+          ></zoo-label>
+        </div>
+
+        <div card-content>
+          <div class="flex flex-column gap-3">
+
+            <div class="col-3 text-center mr-2">
+              <zoo-image-resizer
+                [label]="'Service Image'"
+                [(data)]="portfolio.image"
+                [disabledPreview]="true"
+                (dataChange)="onFileChange($event)"
+              >
+              </zoo-image-resizer>
+              <zoo-button
+                *ngIf="portfolio.image"
+                class="mr-1"
+                [size]="'sm'"
+                [icon]="'pi-check-square'"
+                [label]="'Crop'"
+                (click)="onCrop()"
+              >
+              </zoo-button>
+              <zoo-button
+                *ngIf="portfolio.image"
+                [size]="'sm'"
+                [icon]="'pi-trash'"
+                [label]="'Clear'"
+                [status]="'danger'"
+                (click)="onClearImage()"
+              >
+              </zoo-button>
+            </div>
+            <div class="col-9">
+              <div class="flex flex-wrap">
+                <div
+                  class="flex flex-column align-items-center justify-content-center m-1 selected-img relative"
+                  *ngFor="let img of images"
+                >
+                  <img
+                    [src]="img.url"
+                    class="max-h-5rem m-1"
+                    alt=""
+                    [ngClass]="[img.styleClasses]"
+                  />
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    icon="pi pi-trash"
+                    (click)="onRemoveImageItem(img.uniqueId)"
+                    [ngClass]="[img.styleClasses]"
+                    *ngIf="img.styleClasses !== 'removing-img'"
+                    class="p-button-rounded p-button-danger p-button-text absolute top-0 right-0 remove-btn"
+                  ></button>
+                  <button
+                    pButton
+                    pRipple
+                    type="button"
+                    label="Undo"
+                    *ngIf="img.styleClasses === 'removing-img'"
+                    (click)="onUndoRemoveImageItem(img.uniqueId)"
+                    class="p-button-outlined p-button-rounded absolute undo-btn"
+                  ></button>
+
+                </div>
+              </div>
+            </div>
+
+          <zoo-autocomplete
+          class="col-5"
+          [label]="'Service Name'"
+          [loading]="progressBar"
+          [placeholder]="'Enter'"
+          [required]="false"
+          [(data)]="portfolio.service"
+          [suggestionsList]="serviceList"
+          [filterFieldName]="'service_name'"
+          [delay]="300"
+          (searchKeyChange)="getServiceList($event)"
+        ></zoo-autocomplete>
+
+          <zoo-input-box
+            class="col-6"
+            [label]="'Service Description'"
+            [loading]="progressBar"
+            [type]="'textArea'"
+            [placeholder]="'Enter'"
+            [required]="true"
+            [(data)]="portfolio.description"
+            [formGroup]="formGroup"
+            [formControlKey]="'description'"
+          ></zoo-input-box>
+
+          </div>
+        </div>
+        <div card-footer class="flex justify-content-center gap-3">
+          <zoo-button
+            [label]="'Cancel'"
+            [size]="'sm'"
+            [icon]="'pi-times'"
+            [iconPos]="'left'"
+            [status]="'danger'"
+            [isRounded]="true"
+            (onClick)="OnCancel()"
+          >
+          </zoo-button>
+          <zoo-button
+            [label]="'Save'"
+            [size]="'sm'"
+            [status]="'primary'"
+            [isRounded]="true"
+            (click)="save()"
+          >
+          </zoo-button>
+        </div>
+      </zoo-card>
+
+
+  </div>
+</zoo-page>

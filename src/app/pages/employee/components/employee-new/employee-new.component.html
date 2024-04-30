@@ -1,0 +1,95 @@
+<zoo-page [breadCrumbItems]="breadCrumbItems">
+  <div page-body class="p-3 flex flex-column gap-3 col-10">
+
+      <zoo-card [isFooterBorder]="true">
+        <div card-header>
+          <zoo-label
+            [label]="'New Employee'"
+            [labelClass]="'font-semibold'"
+          ></zoo-label>
+        </div>
+
+        <div card-content>
+          <div class="flex flex-column gap-3">
+            <zoo-input-box
+              class="col-4"
+              [label]="'Employee Name'"
+              [loading]="progressBar"
+              [placeholder]="'Enter'"
+              [required]="true"
+              [(data)]="employee.name"
+              [formGroup]="formGroup"
+              [formControlKey]="'name'"
+            ></zoo-input-box>
+
+            <zoo-input-box
+              class="col-4"
+              [label]="'Contact Number'"
+              [loading]="progressBar"
+              [type]="'tel'"
+              [placeholder]="'Enter'"
+              [required]="true"
+              [(data)]="employee.phone"
+              [formGroup]="formGroup"
+              [formControlKey]="'phone'"
+            ></zoo-input-box>
+
+            <zoo-input-box
+              class="col-4"
+              [label]="'Email'"
+              [loading]="progressBar"
+              [type]="'email'"
+              [placeholder]="'Enter'"
+              [required]="true"
+              [(data)]="employee.email"
+              [formGroup]="formGroup"
+              [formControlKey]="'email'"
+            ></zoo-input-box>
+
+            <zoo-select
+            class="ml-2"
+            [label]="'Gender'"
+            [stateOptions]="genderOptionsList"
+            [(data)]="employee.gender"
+          >
+          </zoo-select>
+
+          <zoo-date
+          class="col-3"
+          [loading]="progressBar"
+          [labelClass]="'text-sm'"
+          [label]="'Date of Birth'"
+          [(data)]="employee.dob"
+         >
+         </zoo-date>
+
+
+
+
+          </div>
+        </div>
+        <div card-footer class="flex justify-content-center gap-3">
+          <zoo-button
+            [label]="'Cancel'"
+            [size]="'sm'"
+            [icon]="'pi-times'"
+            [iconPos]="'left'"
+            [status]="'danger'"
+            [isRounded]="true"
+            (onClick)="OnCancel()"
+          >
+          </zoo-button>
+          <zoo-button
+            [label]="'Save'"
+            [size]="'sm'"
+            [status]="'primary'"
+            [isRounded]="true"
+            (click)="save()"
+          >
+          </zoo-button>
+        </div>
+      </zoo-card>
+
+
+  </div>
+</zoo-page>

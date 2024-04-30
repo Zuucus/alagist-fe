@@ -1,0 +1,49 @@
+.selected-img {
+  flex: 0 1 calc(16.66% - 8px);
+
+  .remove-btn {
+    display: none;
+  }
+
+  &:hover {
+    background-color: var(--gray-100);
+    .remove-btn {
+      display: block;
+    }
+  }
+}
+
+.removing-img {
+  animation: blur-img-item 10s ease-in-out;
+}
+
+.undo-btn {
+  animation: fadeInAnimation ease 4s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.on-progress {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+:host ::ng-deep .p-chip.chip-active {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+@keyframes blur-img-item {
+  100% {
+    filter: blur(100px);
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

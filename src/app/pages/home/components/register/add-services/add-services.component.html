@@ -1,0 +1,41 @@
+<div class="flex flex-column gap-3">
+  <zoo-input-box
+    class="col-4"
+    [loading]="progressBar"
+    [label]="'Service Name'"
+    [placeholder]="'Enter'"
+    [(data)]="service.name"
+    [formGroup]="formGroup"
+    [formControlKey]="'service_name'"
+  ></zoo-input-box>
+  <zoo-drop-down
+  class="col-2"
+  [label]="'Currency'"
+  [loading]="progressBar"
+  [required]="true"
+  [placeholder]="'select'"
+  [optionsList]="currencyList"
+  [optionLabel]="''"
+  [optionValue]="''"
+  [(data)]="service.currency"
+  [formGroup]="formGroup"
+  [formControlKey]="'currency'"
+></zoo-drop-down>
+<zoo-input-box
+  class="col-3"
+  [loading]="progressBar"
+  [label]="'Amount'"
+  [placeholder]="'Enter'"
+  [(data)]="service.rate"
+  [type]="'number'"
+  [required]="true"
+  [inputId]="'currency-us'"
+  [mode]="'currency'"
+  [currency]="baseCurrency"
+  [formGroup]="formGroup"
+  [formControlKey]="'rate'"
+  [maxFractionDigits]="5"
+></zoo-input-box>
+
+
+</div>

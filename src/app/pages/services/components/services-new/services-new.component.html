@@ -1,0 +1,109 @@
+<zoo-page [breadCrumbItems]="breadCrumbItems">
+  <div page-body class="p-3 flex flex-column gap-3 col-10">
+
+      <zoo-card [isFooterBorder]="true">
+        <div card-header>
+          <zoo-label
+            [label]="'New Service'"
+            [labelClass]="'font-semibold'"
+          ></zoo-label>
+        </div>
+
+        <div card-content>
+          <div class="flex flex-column gap-3">
+           <zoo-input-box
+              class="col-4"
+              [label]="'Service Name'"
+              [loading]="progressBar"
+              [placeholder]="'Enter'"
+              [required]="true"
+              [(data)]="service.name"
+              [formGroup]="formGroup"
+              [formControlKey]="'name'"
+            ></zoo-input-box>
+
+            <zoo-autocomplete
+            class="col-4"
+              [label]="'Service Category'"
+              [loading]="progressBar"
+              [placeholder]="'Enter'"
+              [required]="false"
+              [(data)]="service.category"
+              [suggestionsList]="usersList"
+              [filterFieldName]="'name'"
+              [delay]="300"
+              (searchKeyChange)="getUsersList($event)"
+            ></zoo-autocomplete>
+
+              <zoo-date
+              class="col-4"
+                [loading]="progressBar"
+                [labelClass]="'text-sm'"
+                [label]="'Estimation Time'"
+                [placeholder]="'Estimation Time'"
+                [(data)]="service.estimationTime"
+                [timeOnly]="true"
+                [inputId]="'timeonly'"
+                (onSelectChange)="OnTimeChange($event)"
+                (onBlur)="OnTimeChange($event)"
+              >
+              </zoo-date>
+
+              <zoo-input-box
+              class="col-4"
+              [loading]="progressBar"
+              [label]="'Discount Percentage'"
+              [isFlotLabel]="false"
+              [(data)]="service.discount_percentage"
+              [required]="true"
+              [inputId]="'percent'"
+              [type]="'number'"
+              [suffix]="'%'"
+              [mode]="'decimal'"
+              [formGroup]="formGroup"
+              [formControlKey]="'discount_percentage'"
+            ></zoo-input-box>
+
+            <zoo-input-box
+            class="col-4"
+                      [loading]="progressBar"
+                      [label]="'Price'"
+                      [placeholder]="'Enter'"
+                      [(data)]="service.price"
+                      [type]="'number'"
+                      [required]="true"
+                      [inputId]="'currency-us'"
+                      [mode]="'currency'"
+                      [currency]="currency"
+                      [formGroup]="formGroup"
+                      [formControlKey]="'price'"
+                      [maxFractionDigits]="2"
+                      [disabled]="true"
+                    ></zoo-input-box>
+          </div>
+        </div>
+        <div card-footer class="flex justify-content-center gap-3">
+          <zoo-button
+            [label]="'Cancel'"
+            [size]="'sm'"
+            [icon]="'pi-times'"
+            [iconPos]="'left'"
+            [status]="'danger'"
+            [isRounded]="true"
+            (onClick)="OnCancel()"
+          >
+          </zoo-button>
+          <zoo-button
+            [label]="'Save'"
+            [size]="'sm'"
+            [status]="'primary'"
+            [isRounded]="true"
+            (click)="save()"
+          >
+          </zoo-button>
+        </div>
+      </zoo-card>
+
+
+  </div>
+</zoo-page>

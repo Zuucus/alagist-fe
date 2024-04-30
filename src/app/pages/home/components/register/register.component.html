@@ -1,0 +1,147 @@
+<div class="container flex justify-content-center w-full align-content-center">
+  <div class="flex flex-column gap-3 justify-content-center col-8">
+  <div class="flex flex-column gap-5 shadow-8 p-3 border-round">
+    <p-steps [model]="stepItems" [activeIndex]="currentStep"></p-steps>
+
+    <div class="flex flex-column gap-3"  *ngIf="currentStep === 0">
+      <zoo-label
+       class="justify-content-center flex"
+        [label]="'Choose Your Business Category'"
+        [labelClass]="'text-xl font-bold'"
+      >
+      </zoo-label>
+
+      <zoo-checkbox
+            class="ml-2 mb-3 justify-content-center flex"
+            [isMultiple]="true"
+            [label]="'Select the category that best describes your business'"
+            [checkboxList]="categorySelectionList"
+            [(data)]="categoryList"
+            [formControlKey]="'category'"
+            [formGroup]="formGroup"
+            [required]="true"
+          ></zoo-checkbox>
+
+    </div>
+
+    <div class="flex flex-column gap-3"  *ngIf="currentStep === 1">
+      <div class="flex flex-column gap-2 justify-content-center">
+      <zoo-label
+       class="justify-content-center flex col-4"
+        [label]="'Business Information'"
+        [labelClass]="'text-xl font-bold'"
+      >
+      </zoo-label>
+
+      <zoo-input-box
+        class="col-4"
+        [loading]="progressBar"
+        [label]="'Business Name'"
+        [isFlotLabel]="false"
+        [(data)]="register.business_name"
+        [required]="true"
+        [formGroup]="formGroup"
+        [formControlKey]="'business_name'"
+      ></zoo-input-box>
+
+      <zoo-input-box
+      class="col-4"
+        [loading]="progressBar"
+        [label]="'Business Email'"
+        [isFlotLabel]="false"
+        [(data)]="register.business_email"
+        [type]="'email'"
+        [required]="true"
+        [formGroup]="formGroup"
+        [formControlKey]="'business_email'"
+      ></zoo-input-box>
+
+      <zoo-input-box
+      class="col-4"
+        [loading]="progressBar"
+        [label]="'Business Phone Number'"
+        [isFlotLabel]="false"
+        [(data)]="register.business_phone"
+        [required]="true"
+        [formGroup]="formGroup"
+        [formControlKey]="'business_phone'"
+      ></zoo-input-box>
+
+      <zoo-drop-down
+      class="col-4"
+      [label]="'Team Size'"
+      [loading]="progressBar"
+      [required]="true"
+      [placeholder]="'select'"
+      [optionsList]="teamSizeList"
+      [optionLabel]="'name'"
+      [optionValue]="'value'"
+      [(data)]="register.team_size"
+      [formGroup]="formGroup"
+      [formControlKey]="'team_size'"
+    ></zoo-drop-down>
+
+
+      <zoo-input-box
+      class="col-4"
+        [loading]="progressBar"
+        [label]="'Business Address'"
+        [placeholder]="'Enter'"
+        [type]="'textarea'"
+        [(data)]="register.business_address"
+        [formGroup]="formGroup"
+        [formControlKey]="'business_address'"
+      ></zoo-input-box>
+
+      <zoo-input-box
+      class="col-4"
+      [loading]="progressBar"
+      [label]="'Business Address'"
+      [placeholder]="'Enter'"
+      [type]="'textArea'"
+      [(data)]="register.business_address"
+      [formGroup]="formGroup"
+      [formControlKey]="'business_address'"
+    ></zoo-input-box>
+
+      <zoo-input-box
+      class="col-4"
+      [loading]="progressBar"
+      [label]="'Business Description'"
+      [placeholder]="'Enter'"
+      [type]="'textArea'"
+      [(data)]="register.business_description"
+      [formGroup]="formGroup"
+      [formControlKey]="'business_description'"
+    ></zoo-input-box>
+
+      <zoo-input-box
+      class="col-4"
+        [loading]="progressBar"
+        [label]="'Business Website'"
+        [isFlotLabel]="false"
+        [(data)]="register.business_website"
+        [required]="false"
+        [formGroup]="formGroup"
+        [formControlKey]="'business_website'"
+      ></zoo-input-box>
+
+    </div>
+    </div>
+
+    <div class="flex flex-column gap-3"  *ngIf="currentStep === 2">
+      <zoo-label
+       class="justify-content-center flex"
+        [label]="'Business Information'"
+        [labelClass]="'text-xl font-bold'"
+      >
+      </zoo-label>
+
+      <zoo-autocomplete class="col-4 auto" [label]="''" [placeholder]="'Location'"
+      [required]="false" [(data)]="location" [suggestionsList]="serviceList" [filterFieldName]="''"
+      [delay]="300" [isIcon]="false" (searchKeyChange)="getServiceList($event)"></zoo-autocomplete>
+
+
+  </div>
+  </div>
+  </div>

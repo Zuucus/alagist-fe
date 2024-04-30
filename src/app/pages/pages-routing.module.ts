@@ -23,6 +23,34 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     // data: { roles: [Role.USER, Role.SuperUser] },
   },
+  {
+    path: 'services',
+    loadChildren: () =>
+      import('./services/services.module').then((m) => m.ServicesModule),
+    // canActivate: [AuthGuard],
+    // data: { roles: [Role.USER, Role.SuperUser] },
+  },
+  {
+    path: 'employee',
+    loadChildren: () =>
+      import('./employee/employee.module').then((m) => m.EmployeeModule),
+    // canActivate: [AuthGuard],
+    // data: { roles: [Role.USER, Role.SuperUser] },
+  },
+  {
+    path: 'portfolio',
+    loadChildren: () =>
+      import('./portfolio/portfolio.module').then((m) => m.PortfolioModule),
+    // canActivate: [AuthGuard],
+    // data: { roles: [Role.USER, Role.SuperUser] },
+  },
+  {
+    path: 'customers',
+    loadChildren: () =>
+      import('./customer/customer.module').then((m) => m.CustomerModule),
+    // canActivate: [AuthGuard],
+    // data: { roles: [Role.USER, Role.SuperUser] },
+  }
 ];
 
 @NgModule({

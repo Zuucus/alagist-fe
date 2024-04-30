@@ -147,4 +147,14 @@ export enum Role {
   REPAIRINGUPDATE = 'RPU',
   REPAIRINGDELETE = 'RPD',
   REPAIRINGREAD = 'RPR',
+
+
+  //Employee
+  EMPLOYEE = 'EMP',
+
+  //Services
+  SERVICES = 'SER',
+
+  //portfolio
+  PORTFOLIO = 'PFO',
 }
