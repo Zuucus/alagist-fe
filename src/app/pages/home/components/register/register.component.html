@@ -1,147 +1,617 @@
 <div class="container flex justify-content-center w-full align-content-center">
   <div class="flex flex-column gap-3 justify-content-center col-8">
-  <div class="flex flex-column gap-5 shadow-8 p-3 border-round">
-    <p-steps [model]="stepItems" [activeIndex]="currentStep"></p-steps>
-
-    <div class="flex flex-column gap-3"  *ngIf="currentStep === 0">
-      <zoo-label
-       class="justify-content-center flex"
-        [label]="'Choose Your Business Category'"
-        [labelClass]="'text-xl font-bold'"
-      >
-      </zoo-label>
-
-      <zoo-checkbox
-            class="ml-2 mb-3 justify-content-center flex"
-            [isMultiple]="true"
-            [label]="'Select the category that best describes your business'"
-            [checkboxList]="categorySelectionList"
-            [(data)]="categoryList"
-            [formControlKey]="'category'"
-            [formGroup]="formGroup"
-            [required]="true"
-          ></zoo-checkbox>
-
+    <!-- <div class="flex flex-column gap-5 shadow-8 p-3 border-round"> -->
+      <zoo-card >
+        <div card-header>
+      <p-steps [model]="stepItems" [activeIndex]="currentStep"></p-steps>
     </div>
 
-    <div class="flex flex-column gap-3"  *ngIf="currentStep === 1">
-      <div class="flex flex-column gap-2 justify-content-center">
+    <div card-content  *ngIf="currentStep === 0"  >
+      <div class="flex flex-column gap-3 col-offset-4">
       <zoo-label
-       class="justify-content-center flex col-4"
-        [label]="'Business Information'"
+        class="justify-content-center flex col-5"
+        [label]="'Register Your Business'"
         [labelClass]="'text-xl font-bold'"
       >
       </zoo-label>
-
       <zoo-input-box
-        class="col-4"
-        [loading]="progressBar"
-        [label]="'Business Name'"
-        [isFlotLabel]="false"
-        [(data)]="register.business_name"
-        [required]="true"
-        [formGroup]="formGroup"
-        [formControlKey]="'business_name'"
-      ></zoo-input-box>
-
-      <zoo-input-box
-      class="col-4"
+        class="col-6"
         [loading]="progressBar"
         [label]="'Business Email'"
         [isFlotLabel]="false"
-        [(data)]="register.business_email"
+        [(data)]="register.email"
         [type]="'email'"
         [required]="true"
         [formGroup]="formGroup"
-        [formControlKey]="'business_email'"
+        [formControlKey]="'email'"
       ></zoo-input-box>
 
-      <zoo-input-box
-      class="col-4"
+      </div>
+
+
+      </div>
+
+    <div card-content *ngIf="currentStep === 1">
+      <div class="flex flex-column gap-3 col-offset-4">
+        <div class="flex flex-column gap-1">
+        <zoo-label
+          class="justify-content-center flex col-5"
+          [label]="'Introduce Yourself'"
+          [labelClass]="'text-xl font-bold'"
+        >
+        </zoo-label>
+        <zoo-label
+          class="justify-content-center flex col-5"
+          [label]="'Tell us about yourself and your business'"
+          [labelClass]="'text-xs'"
+        >
+        </zoo-label>
+        </div>
+        <zoo-input-box
+          class="col-6"
+          [loading]="progressBar"
+          [label]="'Business Name'"
+          [isFlotLabel]="false"
+          [(data)]="register.businessName"
+          [required]="true"
+          [formGroup]="formGroup"
+          [formControlKey]="'businessName'"
+        ></zoo-input-box>
+
+        <zoo-input-box
+          class="col-6"
+          [loading]="progressBar"
+          [label]="'Your Name'"
+          [isFlotLabel]="false"
+          [(data)]="register.name"
+          [type]="'email'"
+          [required]="false"
+          [formGroup]="formGroup"
+          [formControlKey]="'name'"
+        ></zoo-input-box>
+
+        <zoo-input-box
+          class="col-6"
+          [loading]="progressBar"
+          [label]="'Business Phone Number'"
+          [isFlotLabel]="false"
+          [(data)]="register.contactNumber"
+          [required]="true"
+          [formGroup]="formGroup"
+          [formControlKey]="'contactNumber'"
+        ></zoo-input-box>
+
+        <zoo-label
+          class="flex col-5"
+          [label]="'Password'"
+          [labelClass]="'text-lg font-semibold'"
+        >
+        </zoo-label>
+
+        <zoo-input-box
+          class="col-6"
+          [loading]="progressBar"
+          [label]="'Password'"
+          [isFlotLabel]="false"
+          [(data)]="register.password"
+          [type]="'password'"
+          [required]="true"
+          [formGroup]="formGroup"
+          [formControlKey]="'password'"
+        ></zoo-input-box>
+
+        <zoo-input-box
+          class="col-6"
+          [loading]="progressBar"
+          [label]="'Confirm Password'"
+          [isFlotLabel]="false"
+          [(data)]="register.confirm_password"
+          [type]="'password'"
+          [required]="true"
+          [formGroup]="formGroup"
+          [formControlKey]="'confirm_password'"
+        ></zoo-input-box>
+
+      </div>
+    </div>
+
+    <div card-content  *ngIf="currentStep === 2">
+
+      <div class="flex flex-column gap-3">
+        <zoo-label
+          class="justify-content-center flex"
+          [label]="'Choose Your Business Category'"
+          [labelClass]="'text-xl font-bold'"
+        >
+        </zoo-label>
+
+        <zoo-checkbox
+          class="ml-2 mb-3 justify-content-center flex"
+          [isMultiple]="true"
+          [label]="'Select the category that best describes your business'"
+          [checkboxList]="categorySelectionList"
+          [(data)]="categoryList"
+          [formControlKey]="'category'"
+          [formGroup]="formGroup"
+          [required]="true"
+        ></zoo-checkbox>
+      </div>
+    </div>
+
+
+    <div card-content  *ngIf="currentStep === 3">
+      <div class="flex flex-column gap-3 col-offset-3">
+        <div class="flex flex-column gap-2 justify-content-center">
+          <zoo-label
+            class="justify-content-center flex col-7"
+            [label]="'Business Information'"
+            [labelClass]="'text-xl font-bold'"
+          >
+          </zoo-label>
+
+          <!-- <zoo-input-box
+            class="col-7"
+            [loading]="progressBar"
+            [label]="'Business Name'"
+            [isFlotLabel]="false"
+            [(data)]="register.business_name"
+            [required]="true"
+            [formGroup]="formGroup"
+            [formControlKey]="'business_name'"
+          ></zoo-input-box>
+
+          <zoo-input-box
+            class="col-7"
+            [loading]="progressBar"
+            [label]="'Business Email'"
+            [isFlotLabel]="false"
+            [(data)]="register.business_email"
+            [type]="'email'"
+            [required]="true"
+            [formGroup]="formGroup"
+            [formControlKey]="'business_email'"
+          ></zoo-input-box>
+
+          <zoo-input-box
+            class="col-7"
+            [loading]="progressBar"
+            [label]="'Business Phone Number'"
+            [isFlotLabel]="false"
+            [(data)]="register.business_phone"
+            [required]="true"
+            [formGroup]="formGroup"
+            [formControlKey]="'business_phone'"
+          ></zoo-input-box> -->
+
+          <zoo-drop-down
+            class="col-7"
+            [label]="'Team Size'"
+            [loading]="progressBar"
+            [required]="true"
+            [placeholder]="'select'"
+            [optionsList]="teamSizeList"
+            [optionLabel]="'name'"
+            [optionValue]="'value'"
+            [(data)]="register.team_size"
+            [formGroup]="formGroup"
+            [formControlKey]="'team_size'"
+          ></zoo-drop-down>
+
+          <zoo-input-box
+            class="col-7"
+            [loading]="progressBar"
+            [label]="'Business Address'"
+            [placeholder]="'Enter'"
+            [type]="'textarea'"
+            [(data)]="register.business_address"
+            [formGroup]="formGroup"
+            [formControlKey]="'business_address'"
+          ></zoo-input-box>
+
+          <zoo-input-box
+            class="col-7"
+            [loading]="progressBar"
+            [label]="'Business Address'"
+            [placeholder]="'Enter'"
+            [type]="'textArea'"
+            [(data)]="register.business_address"
+            [formGroup]="formGroup"
+            [formControlKey]="'business_address'"
+          ></zoo-input-box>
+
+          <zoo-input-box
+            class="col-7"
+            [loading]="progressBar"
+            [label]="'Business Description'"
+            [placeholder]="'Enter'"
+            [type]="'textArea'"
+            [(data)]="register.business_description"
+            [formGroup]="formGroup"
+            [formControlKey]="'business_description'"
+          ></zoo-input-box>
+
+          <zoo-input-box
+            class="col-7"
+            [loading]="progressBar"
+            [label]="'Business Website'"
+            [isFlotLabel]="false"
+            [(data)]="register.business_website"
+            [required]="false"
+            [formGroup]="formGroup"
+            [formControlKey]="'business_website'"
+          ></zoo-input-box>
+          <div class="col-6 text-center mr-2">
+            <zoo-image-resizer
+              [label]="'Business Logo/ Image'"
+              [(data)]="register.image"
+              [disabledPreview]="true"
+              (dataChange)="onFileChange($event)"
+            >
+            </zoo-image-resizer>
+            <zoo-button
+              *ngIf="register.image"
+              class="mr-1"
+              [size]="'sm'"
+              [icon]="'pi-check-square'"
+              [label]="'Crop'"
+              (click)="onCrop()"
+            >
+            </zoo-button>
+            <zoo-button
+              *ngIf="register.image"
+              [size]="'sm'"
+              [icon]="'pi-trash'"
+              [label]="'Clear'"
+              [status]="'danger'"
+              (click)="onClearImage()"
+            >
+            </zoo-button>
+          </div>
+          <div class="col-9">
+            <div class="flex flex-wrap">
+              <div
+                class="flex flex-column align-items-center justify-content-center m-1 selected-img relative"
+                *ngFor="let img of images"
+              >
+                <img
+                  [src]="img.url"
+                  class="max-h-5rem m-1"
+                  alt=""
+                  [ngClass]="[img.styleClasses]"
+                />
+                <zoo-button
+                  [size]="'sm'"
+                  [icon]="'pi-trash'"
+                  [label]="'Remove'"
+                  [status]="'danger'"
+                  (click)="onRemoveImageItem(img.uniqueId)"
+                  [ngClass]="[img.styleClasses]"
+                  *ngIf="img.styleClasses !== 'removing-img'"
+                  class="absolute top-0 right-0 remove-btn"
+                >
+                </zoo-button>
+                <zoo-button
+                  [size]="'sm'"
+                  [label]="'Undo'"
+                  *ngIf="img.styleClasses === 'removing-img'"
+                  (click)="onUndoRemoveImageItem(img.uniqueId)"
+                  class="absolute undo-btn"
+                >
+                </zoo-button>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-6 text-center mr-2">
+            <zoo-image-resizer
+              [label]="'Business Cover/ Image'"
+              [(data)]="register.coverImage"
+              [disabledPreview]="true"
+              (dataChange)="onFileChange($event)"
+            >
+            </zoo-image-resizer>
+            <zoo-button
+              *ngIf="register.coverImage"
+              class="mr-1"
+              [size]="'sm'"
+              [icon]="'pi-check-square'"
+              [label]="'Crop'"
+              (click)="onCropCoverImage()"
+            >
+            </zoo-button>
+            <zoo-button
+              *ngIf="register.coverImage"
+              [size]="'sm'"
+              [icon]="'pi-trash'"
+              [label]="'Clear'"
+              [status]="'danger'"
+              (click)="onClearCoverImage()"
+            >
+            </zoo-button>
+          </div>
+          <div class="col-9">
+            <div class="flex flex-wrap">
+              <div
+                class="flex flex-column align-items-center justify-content-center m-1 selected-img relative"
+                *ngFor="let img of coverImages"
+              >
+                <img
+                  [src]="img.url"
+                  class="max-h-5rem m-1"
+                  alt=""
+                  [ngClass]="[img.styleClasses]"
+                />
+                <zoo-button
+                  [size]="'sm'"
+                  [icon]="'pi-trash'"
+                  [label]="'Remove'"
+                  [status]="'danger'"
+                  (click)="onRemoveCoverImageItem(img.uniqueId)"
+                  [ngClass]="[img.styleClasses]"
+                  *ngIf="img.styleClasses !== 'removing-img'"
+                  class="absolute top-0 right-0 remove-btn"
+                >
+                </zoo-button>
+                <zoo-button
+                  [size]="'sm'"
+                  [label]="'Undo'"
+                  *ngIf="img.styleClasses === 'removing-img'"
+                  (click)="onUndoRemoveCoverImageItem(img.uniqueId)"
+                  class="absolute undo-btn"
+                >
+                </zoo-button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div card-content  *ngIf="currentStep === 4">
+      <div class="flex flex-column gap-3 col-offset-2">
+        <zoo-label
+          class="justify-content-center flex"
+          [label]="'Business Hours'"
+          [labelClass]="'text-xl font-bold'"
+        >
+        </zoo-label>
+
+        <div class="flex flex-column gap-3" *ngFor="let bhour of businessHoursList; let first=first">
+          <div class="flex flex-row gap-3">
+
+          <zoo-checkbox
+            class="ml-2 mt-1 justify-content-center flex"
+            [isMultiple]="false"
+            [label]="''"
+            [(data)]="bhour.isOpen"
+            [formControlKey]="'isOpen'"
+            [formGroup]="formGroup"
+          ></zoo-checkbox>
+
+           <zoo-label
+             class="justify-content-center flex mt-3 col-2"
+             [label]="bhour.name"
+             [labelClass]="'font-semibold'"
+            >
+            </zoo-label>
+
+            <div class="grid m-0 p-0">
+              <zoo-date
+                class="col-5"
+                [loading]="progressBar"
+                [labelClass]="'text-sm'"
+                [label]="first?'Start Time':''"
+                [placeholder]="'HH:MM (24-hour format)'"
+                [(data)]="bhour.start"
+                [disabled]="!bhour.isOpen"
+                [timeOnly]="true"
+                [inputId]="'timeonly'"
+                (onSelectChange)="OnTimeChange($event)"
+                (onBlur)="OnTimeChange($event)"
+              >
+              </zoo-date>
+
+              <zoo-date
+                class="col-5"
+                [loading]="progressBar"
+                [labelClass]="'text-sm'"
+                [label]="first?'End Time':''"
+                [placeholder]="'HH:MM (24-hour format)'"
+                [(data)]="bhour.end"
+                [disabled]="!bhour.isOpen"
+                [timeOnly]="true"
+                [inputId]="'timeonly'"
+                (onSelectChange)="OnTimeChange($event)"
+                (onBlur)="OnTimeChange($event)"
+              >
+              </zoo-date>
+            </div>
+
+        </div>
+
+
+
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+    <div card-content  *ngIf="currentStep === 5" class="col-6 col-offset-3">
+      <div class="flex flex-column gap-3">
+        <zoo-label
+          class="justify-content-center flex"
+          [label]="'Service Information'"
+          [labelClass]="'text-xl font-bold'"
+        >
+        </zoo-label>
+
+        <div class="flex flex-column gap-3" *ngFor="let i of [1, 2]">
+          <div
+            class="flex flex-row justify-content-between shadow-3 border-round mb-3"
+          >
+            <div class="flex flex-row gap-3 p-3">
+              <p-image
+                [src]="salon?.image"
+                alt=""
+                height="70"
+                width="70"
+              ></p-image>
+              <div class="flex flex-column">
+                <zoo-label
+                  [label]="'Womens Cut (Normal)'"
+                  [labelClass]="'text-lg font-bold'"
+                ></zoo-label>
+                <div class="flex flex-row gap-1">
+                  <zoo-label
+                    [label]="'Estimated time'"
+                    [labelClass]="'text-xs'"
+                  ></zoo-label>
+                  <zoo-label
+                    [label]="'25m'"
+                    [labelClass]="'text-xs'"
+                  ></zoo-label>
+                </div>
+                <zoo-label
+                  class="mt-2"
+                  [label]="'1200'"
+                  [labelClass]="'text-lg font-bold'"
+                ></zoo-label>
+              </div>
+            </div>
+            <!-- <zoo-button
+              class="p-3 mt-4"
+              [size]="'sm'"
+              [status]="'primary'"
+              [type]="'outlined'"
+              [isIconOnly]="true"
+              [status]="'secondary'"
+              [icon]="'pi-plus'"
+            ></zoo-button> -->
+          </div>
+        </div>
+
+        <div class="flex flex-row gap-3 justify-content-center">
+
+        <zoo-autocomplete
+        [label]="'Add New Service Name'"
         [loading]="progressBar"
-        [label]="'Business Phone Number'"
-        [isFlotLabel]="false"
-        [(data)]="register.business_phone"
-        [required]="true"
-        [formGroup]="formGroup"
-        [formControlKey]="'business_phone'"
-      ></zoo-input-box>
-
-      <zoo-drop-down
-      class="col-4"
-      [label]="'Team Size'"
-      [loading]="progressBar"
-      [required]="true"
-      [placeholder]="'select'"
-      [optionsList]="teamSizeList"
-      [optionLabel]="'name'"
-      [optionValue]="'value'"
-      [(data)]="register.team_size"
-      [formGroup]="formGroup"
-      [formControlKey]="'team_size'"
-    ></zoo-drop-down>
-
-
-      <zoo-input-box
-      class="col-4"
-        [loading]="progressBar"
-        [label]="'Business Address'"
         [placeholder]="'Enter'"
-        [type]="'textarea'"
-        [(data)]="register.business_address"
-        [formGroup]="formGroup"
-        [formControlKey]="'business_address'"
-      ></zoo-input-box>
-
-      <zoo-input-box
-      class="col-4"
-      [loading]="progressBar"
-      [label]="'Business Address'"
-      [placeholder]="'Enter'"
-      [type]="'textArea'"
-      [(data)]="register.business_address"
-      [formGroup]="formGroup"
-      [formControlKey]="'business_address'"
-    ></zoo-input-box>
-
-      <zoo-input-box
-      class="col-4"
-      [loading]="progressBar"
-      [label]="'Business Description'"
-      [placeholder]="'Enter'"
-      [type]="'textArea'"
-      [(data)]="register.business_description"
-      [formGroup]="formGroup"
-      [formControlKey]="'business_description'"
-    ></zoo-input-box>
-
-      <zoo-input-box
-      class="col-4"
-        [loading]="progressBar"
-        [label]="'Business Website'"
-        [isFlotLabel]="false"
-        [(data)]="register.business_website"
         [required]="false"
-        [formGroup]="formGroup"
-        [formControlKey]="'business_website'"
-      ></zoo-input-box>
+        [(data)]="services"
+        [suggestionsList]="serviceList"
+        [filterFieldName]="'name'"
+        [delay]="300"
+        (searchKeyChange)="getServicesList($event)"
+      ></zoo-autocomplete>
 
-    </div>
-    </div>
-
-    <div class="flex flex-column gap-3"  *ngIf="currentStep === 2">
-      <zoo-label
-       class="justify-content-center flex"
-        [label]="'Business Information'"
-        [labelClass]="'text-xl font-bold'"
+      <zoo-button
+        class="mt-4"
+        [label]="'Add Service'"
+        [size]="'sm'"
+        [status]="'primary'"
+        [isRounded]="true"
+        (click)="addService()"
       >
-      </zoo-label>
+      </zoo-button>
 
-      <zoo-autocomplete class="col-4 auto" [label]="''" [placeholder]="'Location'"
-      [required]="false" [(data)]="location" [suggestionsList]="serviceList" [filterFieldName]="''"
-      [delay]="300" [isIcon]="false" (searchKeyChange)="getServiceList($event)"></zoo-autocomplete>
+      </div>
+      </div>
 
 
+      </div>
+
+    <div card-content  *ngIf="currentStep === 6">
+      <div class = "flex flex-column gap-5 col-offset-3 p-3">
+        <zoo-label
+           [label]="'Registration Completed'"
+            [labelClass]="'text-xl font-bold'"
+        >
+        </zoo-label>
+        <div class="flex flex-column gap-5">
+
+          <div class="h-9rem border-circle bg-black-alpha-10 col-3">
+            <i
+            class="pi pi-check flex justify-content-center align-items-center h-full w-full"
+            style="font-size: 5rem;"
+          ></i>
+
+          </div>
+          <zoo-label
+            [label]="'Please review the information you have entered'"
+            [labelClass]="'text-lg'"
+          >
+          </zoo-label>
+          <div class="flex flex-column gap-5">
+
+            <zoo-label
+              [label]="'Congratulations! Your business has been successfully registered'"
+              [labelClass]="'text-lg'"
+            >
+            </zoo-label>
+
+            <zoo-label
+              [label]="'Your business is now live on the platform'"
+              [labelClass]="'text-lg'"
+            >
+            </zoo-label>
+
+            <div class="flex flex-row gap-3">
+              <zoo-button
+                [label]="'Back to Edit'"
+                [size]="'sm'"
+                [status]="'secondary'"
+                [isRounded]="true"
+                (click)="currentStep = 0"
+              >
+              </zoo-button>
+
+            <zoo-button
+              [label]="'Go to Dashboard'"
+              [size]="'sm'"
+              [status]="'primary'"
+              [isRounded]="true"
+              (click)="goToDashboard()"
+            >
+            </zoo-button>
+            </div>
+          </div>
+
+          </div>
+
+      </div>
+
+
+
+      </div>
+
+      <div card-footer *ngIf="currentStep<6">
+        <div class="flex flex-row gap-3 justify-content-center">
+          <zoo-button
+            [label]="'Back'"
+            [size]="'sm'"
+            (click)="onBack()"
+            [isRounded]="true"
+            [status]="'secondary'"
+          >
+          </zoo-button>
+
+          <zoo-button
+            [label]="'Next'"
+            [size]="'sm'"
+            (click)="onNext()"
+            [isRounded]="true"
+          >
+          </zoo-button>
+        </div>
+</div>
+
+      </zoo-card>
+    <!-- </div> -->
   </div>
-  </div>
-  </div>
+</div>

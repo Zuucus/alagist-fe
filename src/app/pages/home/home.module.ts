@@ -30,6 +30,8 @@ import { ZooCheckboxModule } from 'src/app/core/components/zoo-checkbox/zoo-chec
 import { ZooDropDownModule } from 'src/app/core/components/zoo-drop-down/zoo-drop-down.module';
 import { AddServicesComponent } from './components/register/add-services/add-services.component';
 import { MessageService } from 'primeng/api';
+import { ZooImageUploadModule } from 'src/app/core/components/zoo-image-upload/zoo-image-upload.module';
+import { ZooImageResizerModule } from 'src/app/core/components/zoo-image-resizer/zoo-image-resizer.module';
 
 
 @NgModule({
@@ -56,6 +58,9 @@ import { MessageService } from 'primeng/api';
     ZooPageModule,
     ZooAutocompleteModule,
     ZooDateModule,
+    ZooImageUploadModule,
+    ZooImageResizerModule,
+    ZooCheckboxModule,
     TagModule,
     AvatarModule,
     AvatarGroupModule,
